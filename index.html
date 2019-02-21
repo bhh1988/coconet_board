@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Hello!</title>
+    <title>Coconet Visualization</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
-    <!-- import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
-  </head>  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="style.css">
+  </head>
   <body>
-    <h1>Hi there!</h1>
-    
-    <p>
-      I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch</a>!
-    </p>
+    <div class="horizontal">
+      <div class="container" id="container"></div>
+      <div class="settings">
+        <h1>Coconet</h1>
+        <h2>Legend:</h2>
+        <label><button class="pixel voice0" onclick="activateVoice(event, 0)"></button>Soprano</label>
+        <label><button class="pixel legend voice1" onclick="activateVoice(event, 1)"></button>Alto</label>
+        <label><button class="pixel legend voice2" onclick="activateVoice(event, 2)"></button>Tenor</label>
+        <label><button class="pixel legend voice3" onclick="activateVoice(event, 3)"></button>Bass</label>
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
+        <h2>Controls:</h2>
+        <!-- Tempo:
+        <input class="controls" id="inputTempo" type="number" value="120">
+        <br> -->
+        <button class="controls" id="btnPlay" onclick="playOrPause()">Play</button>
+        <button class="controls" onclick="reset()">Reset</button>
+        <button class="controls" onclick="infill()">Infill</button>
+      </div>
+    </div>
   </body>
+
+  <script src="magentamusic.js"></script>
+  <script src="helpers.js"></script>
+  <script src="script.js"></script>
 </html>
