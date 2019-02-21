@@ -11,21 +11,37 @@
 }
 
 html {  
-  --pink: #E61E8C;
+  /* og scheme */
   --purple: #2A298B;
   --yellow: #FAECDB;
+  --light: #d7b5d8;
+  
+  /* teal/greens */
   --yellow: #F3E9D2;
+  --light: #C6DABF;
+  
+  /* purples */
+  --yellow: #F3E9D2;
+  --light: #EAE8F1;
+  --purple: #20476C;
 }
-
+/* og scheme */
 .voice0 { background: #d7b5d8 !important; }
 .voice1 { background: #df65b0 !important; }
 .voice2 { background: #dd1c77 !important; }
 .voice3 { background: #980043 !important; }
 
+/* teal/greens */
 .voice0 { background: #C6DABF !important; }
 .voice1 { background: #88D498 !important; }
 .voice2 { background: #18936F !important; }
 .voice3 { background: #114B5F !important; }
+
+/* purples */
+.voice0 { background: #B1C1DB !important; }
+.voice1 { background: #4988B8 !important; }
+.voice2 { background: #255686 !important; }
+.voice3 { background: #20476C !important; }
 
 body {
   font-family: monospace;
@@ -43,7 +59,7 @@ h1 {
   font-size: 40px;
   color: var(--purple);
   margin: 0;
-  text-shadow: -4px 4px 0 #d7b5d8;
+  text-shadow: -4px 4px 0 var(--light);
 }
 
 footer {
@@ -134,7 +150,7 @@ a:link, a:visited {
 }
 
 .controls:hover {
-  background-color: var(--yellow) !important;
+  background-color: var(--light) !important;
   -webkit-box-shadow: 2px 2px 0 var(--purple);
   box-shadow: 2px 2px 0 var(--purple);
 }
