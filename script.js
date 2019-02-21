@@ -14,6 +14,7 @@ function init() {
     run: (note) => board.playStep(note),
     stop: () => {
       btnPlay.textContent = 'Play';
+      isAnimating = false;
       board.playEnd();
       document.getElementById('container').classList.remove('playing');
     }
@@ -44,14 +45,16 @@ function reset() {
 
 function playOrPause() {
   const container = document.getElementById('container');
-
   if (isAnimating) {
     container.classList.remove('playing');
     player.stop();
   } else {
-    container.classList.add('playing');
     const sequence = board.getNoteSequence();
-  //  player.setTempo(parseFloat(inputTempo.value));
+    if (sequence.notes.length === 0) {
+      showEmptyNoteSequenceError();
+      return;
+    }
+    container.classList.add('playing');
     player.loadSamples(sequence).then(() => {
       player.start(sequence);
     });
@@ -62,11 +65,21 @@ function playOrPause() {
 
 function infill() {
   const sequence = board.getNoteSequence();
-  model.infill(sequence).then((output) => board.drawNoteSequence(output));
+  if (sequence.notes.length === 0) {
+    showEmptyNoteSequenceError();
+    return;
+  }
+  error.textContent = 'The robots are working...';
+  model.infill(sequence).then((output) => {
+    board.drawNoteSequence(output);
+    error.textContent = '';
+  });
 }
 
 function merge() {
   const sequence = model.mergeHeldNotes(board.getNoteSequence());
+  const container = document.getElementById('container');
+  container.classList.add('playing');
   player.start(sequence);
 }
 
@@ -87,4 +100,13 @@ function activateVoice(event, voice) {
     parentLabel.classList.add('active');
     forceVoiceDrawing = voice;
   }
+}
+
+function showEmptyNoteSequenceError() {
+  error.textContent = 'Draw some 🎵 first!';
+  setTimeout(clearError, 2000);
+}
+
+function clearError() {
+  error.textContent = '';
 }

@@ -22,10 +22,17 @@
         <!-- Tempo:
         <input class="controls" id="inputTempo" type="number" value="120">
         <br> -->
-        <button class="controls" id="btnPlay" onclick="playOrPause()">Play</button>
-        <button class="controls" onclick="reset()">Reset</button>
-        <button class="controls" onclick="infill()">Infill</button>
-        <button class="controls" onclick="merge()">Play held 🎵</button>
+        <div id="controls">
+          <button class="controls" id="btnPlay" onclick="playOrPause()">Play</button>
+          <button class="controls" onclick="merge()">Play held 🎵</button>
+          <br>
+
+          <button class="controls" onclick="infill()">Infill</button>
+          <button class="controls" onclick="reset()">Reset</button>
+        </div>
+        <br>
+        <div id="error"></div>
+        
       </div>
     </div>
   </body>

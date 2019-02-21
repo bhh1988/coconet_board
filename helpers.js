@@ -112,7 +112,9 @@ class Board {
         }
       }
     }
-    sequence.totalQuantizedSteps = sequence.notes[sequence.notes.length - 1].quantizedEndStep;
+    if (sequence.notes.length !== 0) {
+      sequence.totalQuantizedSteps = sequence.notes[sequence.notes.length - 1].quantizedEndStep;
+    }
     return sequence;
   }
 
