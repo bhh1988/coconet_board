@@ -65,8 +65,11 @@ class Board {
 
     // Init this cell if it's never been set before.
     if (dot.on === undefined) dot.on = -1;
-    if (voiceOverride === -1) {
+    if (voiceOverride === undefined) {
       dot.on = this.getNextVoice(pitch, dot.on)
+    } else if (voiceOverride === -1) {
+      // Erasing!
+      dot.on = -1;
     } else {
       // We have an override. We should try to use it, unless we're drawing
       // out of range, in which case default to the next available voice.

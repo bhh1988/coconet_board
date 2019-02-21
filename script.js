@@ -5,7 +5,7 @@ model.initialize();
 
 let isMouseDown = false;
 let isAnimating = false;
-let forceVoiceDrawing = -1;
+let forceVoiceDrawing = undefined;
 
 init();
 
@@ -92,7 +92,7 @@ function activateVoice(event, voice) {
   // If we're clicking an activated button, then we're really deactivating it.
   if (parentLabel && parentLabel.classList.contains('active')) {
     parentLabel.classList.remove('active');
-    forceVoiceDrawing = -1;
+    forceVoiceDrawing = undefined;
   } else {
     // Deactivate the previous label.
     const prevButton = document.querySelector('label.active');
