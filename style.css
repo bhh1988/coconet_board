@@ -107,7 +107,7 @@ a:link, a:visited {
   color: var(--purple);
   border-radius: 5px;
   background: white;
-  width: 100px;
+  min-width: 100px;
   display: block;
 }
 

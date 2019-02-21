@@ -53,7 +53,7 @@ function playOrPause() {
     const sequence = board.getNoteSequence();
   //  player.setTempo(parseFloat(inputTempo.value));
     player.loadSamples(sequence).then(() => {
-      player.start(sequence);;
+      player.start(sequence);
     });
   }
   isAnimating = !isAnimating;
@@ -63,6 +63,11 @@ function playOrPause() {
 function infill() {
   const sequence = board.getNoteSequence();
   model.infill(sequence).then((output) => board.drawNoteSequence(output));
+}
+
+function merge() {
+  const sequence = model.mergeHeldNotes(board.getNoteSequence());
+  player.start(sequence);
 }
 
 function activateVoice(event, voice) {
