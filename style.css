@@ -13,13 +13,14 @@
 html {  
   --yellow: #F7E6DA;
   --light: #F7E6DA;
-  --purple: #20476C;
+  --purple: #09315d;
 }
 
+/* purples */
 .voice0 { background: #B1C1DB !important; }
 .voice1 { background: #4988B8 !important; }
-.voice2 { background: #0058A4 !important; }
-.voice3 { background: #20476C !important; }
+.voice2 { background: #0056a3 !important; }
+.voice3 { background: #09315d !important; }
 
 body {
   font-family: monospace;
