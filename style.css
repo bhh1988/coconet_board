@@ -5,6 +5,10 @@
 [hidden] {
   display: none !important;
 }
+[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
 
 body {
   font-family: monospace;
@@ -109,6 +113,7 @@ a:link, a:visited {
   background: white;
   min-width: 100px;
   display: block;
+  transition: all 0.2s ease-in-out;
 }
 
 [disabled] {
@@ -143,6 +148,7 @@ a:link, a:visited {
   border: none;
   border-radius: 3px;
   padding: 0;
+  transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
 }
 
 button.pixel:hover {
@@ -155,8 +161,7 @@ button.pixel:hover {
 }
 
 .playing .bar {
-  background: var(--green) !important;
-  opacity: 1 !important;
+  background: #FFF182 !important;
 }
 
 .voice0 { background: #d7b5d8 !important; }

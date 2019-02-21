@@ -13,10 +13,11 @@
       <div class="settings">
         <h1>Coconet</h1>
         <h2>Legend:</h2>
-        <label><button class="pixel voice0" onclick="activateVoice(event, 0)"></button>Soprano</label>
+        <label><button class="pixel legend voice0" onclick="activateVoice(event, 0)"></button>Soprano</label>
         <label><button class="pixel legend voice1" onclick="activateVoice(event, 1)"></button>Alto</label>
         <label><button class="pixel legend voice2" onclick="activateVoice(event, 2)"></button>Tenor</label>
         <label><button class="pixel legend voice3" onclick="activateVoice(event, 3)"></button>Bass</label>
+        <label><button class="pixel legend empty" onclick="activateVoice(event, -1)"></button>Empty</label>
 
         <h2>Controls:</h2>
         <!-- Tempo:
@@ -32,7 +33,6 @@
         </div>
         <br>
         <div id="error"></div>
-        
       </div>
     </div>
   </body>
