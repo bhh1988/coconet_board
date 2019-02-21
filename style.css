@@ -10,15 +10,27 @@
   pointer-events: none;
 }
 
+html {  
+  --pink: #E61E8C;
+  --purple: #2A298B;
+  --yellow: #FAECDB;
+  --yellow: #F3E9D2;
+}
+
+.voice0 { background: #d7b5d8 !important; }
+.voice1 { background: #df65b0 !important; }
+.voice2 { background: #dd1c77 !important; }
+.voice3 { background: #980043 !important; }
+
+.voice0 { background: #C6DABF !important; }
+.voice1 { background: #88D498 !important; }
+.voice2 { background: #18936F !important; }
+.voice3 { background: #114B5F !important; }
+
 body {
   font-family: monospace;
   margin: 1em;
   text-align: center;
-  --pink: #E61E8C;
-  --blue: #4DEEEA;
-  --purple: #2A298B;
-  --yellow: #FFED5E;
-  --green: #74EE16;
 
   font-size: 14px;
   color: var(--purple);
@@ -164,15 +176,10 @@ button.pixel:hover {
   background: #FFF182 !important;
 }
 
-.voice0 { background: #d7b5d8 !important; }
-.voice1 { background: #df65b0 !important; }
-.voice2 { background: #dd1c77 !important; }
-.voice3 { background: #980043 !important; }
-
 .settings label {
   display: block;
   padding: 4px;
 }
 .settings label.active {
-  background: var(--blue);
+  background: var(--yellow);
 }
