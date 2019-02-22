@@ -116,7 +116,7 @@ class Board {
       }
     }
     if (sequence.notes.length !== 0) {
-      sequence.totalQuantizedSteps = sequence.notes[sequence.notes.length - 1].quantizedEndStep;
+      sequence.totalQuantizedSteps = PIXELS_WIDTH;
     }
     return sequence;
   }
