@@ -83,7 +83,7 @@ function infill() {
 }
 
 function merge() {
-  const sequence = mm.sequences(board.getNoteSequence());
+  const sequence = mm.sequences.mergeConsecutiveNotes(board.getNoteSequence());
   const container = document.getElementById('container');
   container.classList.add('playing');
   player.start(sequence);
