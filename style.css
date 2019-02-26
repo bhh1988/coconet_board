@@ -14,6 +14,7 @@ html {
   --yellow: #F7E6DA;
   --light: #F7E6DA;
   --purple: #09315d;
+  --size: 13px;
 }
 
 /* purples */
@@ -182,10 +183,10 @@ button.legend > svg {
 
 button.legend:active, button.legend.active {
   outline: none;
-  border-color: var(--purple) var(--light) var(--light) var(--purple);
-  box-shadow: inset 2px 2px 0px var(--purple);
-  xbox-shadow: inset 0.8px 0.8px 0px var(--purple), 0.5px 0.5px 0px #eeedea;
-
+  border-style: solid;
+  box-shadow: none;
+  border-color: var(--light);
+  background: var(--light) !important;
 }
 
 .settings label {
@@ -196,6 +197,10 @@ button.legend:active, button.legend.active {
   background: var(--light);
 }
 
+.s1 {
+  height: var(--size);
+  width: var(--size);
+}
 
 /***********************
  * Note pixels
@@ -213,8 +218,8 @@ button.legend:active, button.legend.active {
   margin: 1px;
   font-family: monospace;
   background: var(--yellow);
-  height: 13px;
-  width: 13px;
+  height: var(--size);
+  width: var(--size);
   border: none;
   border-radius: 3px;
   padding: 0;
