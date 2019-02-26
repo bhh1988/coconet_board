@@ -21,14 +21,13 @@
         <label><button class="pixel legend empty" onclick="activateVoice(event, -1)" aria-label="draw empty"></button>Empty</label>
 
         <h2>Controls:</h2>
-        <!-- Tempo:
-        <input class="controls" id="inputTempo" type="number" value="120">
-        <br> -->
         <div id="controls">
           <button class="controls" id="btnPlay" onclick="playOrPause()">Play</button>
           <button class="controls" onclick="merge()">Play held 🎵</button>
           <br>
-
+           Temperature:
+          <input class="controls" id="inputTemp" type="number" min="0" max="2" step="0.1" value="0.5">
+          <br>
           <button class="controls" onclick="infill()">Infill</button>
           <button class="controls" onclick="reset()">Reset</button>
         </div>

@@ -75,7 +75,7 @@ function infill() {
   error.textContent = 'The robots are working...';
   controls.setAttribute('disabled', true);
   
-  model.infill(sequence).then((output) => {
+  model.infill(sequence, parseFloat(inputTemp.value)).then((output) => {
     board.drawNoteSequence(output);
     error.textContent = '';
     controls.removeAttribute('disabled');
