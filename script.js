@@ -1,4 +1,4 @@
-const board = new Board();
+const board = window.board;
 const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 const model = new mm.Coconet('https://storage.googleapis.com/magentadata/js/checkpoints/coconet/bach');
 model.initialize();
