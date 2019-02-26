@@ -134,6 +134,54 @@ a:link, a:visited {
   box-shadow: 2px 2px 0 var(--purple);
 }
 
+/* Instruments */
+button.legend {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-border-radius:0px;
+  appearance: none;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  font-family: monospace;
+  padding: 0;
+  transition: top 0.2s ease-in-out, transform 0.2s ease-in-out, background 0.2s ease-in-out;
+  background: transparent !important;
+  border: solid var(--purple) 2px;
+  color: var(--purple);
+  box-shadow: 4px 4px 0 var(--purple);
+  border-radius: 3px;
+  position: relative;
+  top: 0;
+  font-weight: bold;
+  margin: 2px 0px;
+  width: 66px;
+  height: 66px;
+  text-align: center;
+}
+
+button.legend > svg {
+  height: 30px;
+  width: 30px;
+  margin: 0 auto;
+}
+
+button.legend:active, button.legend.active {
+  top: 4px;
+  box-shadow: none;
+}
+
+.settings label {
+  display: block;
+  padding: 4px;
+}
+.settings label.active {
+  background: var(--light);
+}
+
+
 /***********************
  * Note pixels
  ***********************/
@@ -158,39 +206,6 @@ a:link, a:visited {
   transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
 }
 
-label {
-  display: inline-block;
-}
-
-button.legend {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-appearance: none;
-  -webkit-border-radius:0px;
-  appearance: none;
-  font-size: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  cursor: pointer;
-  font-family: monospace;
-  padding: 0;
-  transition: top 0.2s ease-in-out, transform 0.2s ease-in-out, background 0.2s ease-in-out;
-  background: transparent !important;
-  border: solid var(--purple) 2px;
-  color: var(--purple);
-  box-shadow: 4px 4px 0 var(--purple);
-  border-radius: 3px;
-  position: relative;
-  top: 0;
-  font-weight: bold;
-  margin: 0 4px;
-}
-
-button.legend:active, button.legend.active {
-  top: 4px;
-  box-shadow: none;
-}
-
 button.pixel:hover {
   opacity: 0.7;
 }
@@ -202,12 +217,4 @@ button.pixel:hover {
 
 .playing .bar {
   background: #FFF182 !important;
-}
-
-.settings label {
-  display: block;
-  padding: 4px;
-}
-.settings label.active {
-  background: var(--light);
 }
