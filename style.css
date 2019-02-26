@@ -179,30 +179,32 @@ input.controls {
   box-shadow: none;
 }
 
+.brush {
+  margin: 0;
+  padding: 0;
+}
+.brush.active {
+  border: 3px solid var(--purple);
+}
 
-.s1 {
+.brush.s1 {
   height: var(--size);
   width: var(--size);
 }
-
-.pixel.s2 {
+.brush.s2 {
   height: calc(2 * var(--size));
   width: calc(2 * var(--size));
 }
-
-.pixel.s3 {
+.brush.s3 {
   height: calc(3 * var(--size));
   width: calc(3 * var(--size));
 }
-
-.pixel.s4 {
+.brush.s4 {
   height: calc(4 * var(--size));
   width: calc(4 * var(--size));
 }
 
-.brush.active {
-  border: 3px solid var(--purple);
-}
+
 /***********************
  * Note pixels
  ***********************/
@@ -226,6 +228,11 @@ input.controls {
   padding: 0;
   transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
 }
+
+.pixel.masked {
+  background: white;
+  border: 1px dashed var(--light);
+} 
 
 button.pixel:hover {
   opacity: 0.7;

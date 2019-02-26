@@ -59,30 +59,42 @@ class Board {
   }
 
   // Toggles a particular dot from on to off.
-  toggleCell(i, j, uiButton, voiceOverride) {
+  toggleCell(i, j, voice) {
+    const uiButton = document.querySelector(`.pixel[data-row="${i}"][data-col="${j}"]`);
+          
+    if (!uiButton) {
+      return;
+    }
+    
     const dot = this.data[i][j];
     const pitch = MAX_PITCH - i;
 
     // Init this cell if it's never been set before.
     if (dot.on === undefined) dot.on = -1;
-    if (voiceOverride === undefined) {
+    
+    if (voice === undefined) {
       dot.on = this.getNextVoice(pitch, dot.on)
-    } else if (voiceOverride === -1) {
+    } else if (voice === -1) {
       // Erasing!
       dot.on = -1;
+    } else if (voice === -2) {
+      // Masking!
+      dot.on = -2;
     } else {
-      // We have an override. We should try to use it, unless we're drawing
+      // We are drawing a voice. We should try to use it, unless we're drawing
       // out of range, in which case default to the next available voice.
-      if (this.isPitchInRange(pitch, voiceOverride)) {
-        dot.on = voiceOverride;
+      if (this.isPitchInRange(pitch, voice)) {
+        dot.on = voice;
       } else {
-        const nextVoice = this.getNextVoice(pitch, voiceOverride);
+        const nextVoice = this.getNextVoice(pitch, voice);
         dot.on = nextVoice === -1 ? this.getNextVoice(pitch, -1) : nextVoice;
       }
     }
 
     if (dot.on === -1) {
       this.resetButton(uiButton);
+    } else if (dot.on === -2) {
+      this.maskButton(uiButton);
     } else {
       this.voiceButton(uiButton, dot.on);
     }
@@ -91,6 +103,11 @@ class Board {
   resetButton(uiButton) {
     uiButton.setAttribute('class', 'pixel');
     uiButton.setAttribute('aria-label', 'cell, empty');
+  }
+  
+  maskButton(uiButton) {
+    uiButton.setAttribute('class', 'pixel masked');
+    uiButton.setAttribute('aria-label', 'cell, masked');
   }
 
   voiceButton(uiButton, voice) {

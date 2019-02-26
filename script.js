@@ -5,7 +5,7 @@ model.initialize();
 
 let isMouseDown = false;
 let isAnimating = false;
-let forceVoiceDrawing = undefined;
+let forceVoiceDrawing = 0;
 let brushSize = 1;
 
 init();
@@ -40,7 +40,13 @@ function clickCell(event) {
   }
   const x = parseInt(button.dataset.row);
   const y = parseInt(button.dataset.col);
-  board.toggleCell(x, y, button, forceVoiceDrawing);
+  
+  // The next brushSize buttons.
+  for (let i = 0; i < brushSize; i++) {
+    for (let j = 0; j < brushSize; j++) {
+      board.toggleCell(x + i, y + j, forceVoiceDrawing);
+    }
+  }
 }
 
 function reset() {
@@ -92,20 +98,29 @@ function merge() {
 
 function activateVoice(event, voice) {
   const btn = event.target.localName === 'button' ? event.target : event.target.parentNode;
-  // If we're clicking an activated button, then we're really deactivating it.
-  if (btn && btn.classList.contains('active')) {
-    btn.classList.remove('active');
-    forceVoiceDrawing = undefined;
-  } else {
-    // Deactivate the previous button.
-    const prevButton = document.querySelector('.palette.active');
-    if (prevButton) {
-      prevButton.classList.remove('active');
-    }
-    // Activate this one.
-    btn.classList.add('active');
-    forceVoiceDrawing = voice;
+  
+  // Deactivate the previous button.
+  const prevButton = document.querySelector('.palette.active');
+  if (prevButton) {
+    prevButton.classList.remove('active');
   }
+  // Activate this one.
+  btn.classList.add('active');
+  forceVoiceDrawing = voice;
+}
+
+function activateMask(event) {
+  const btn = event.target.localName === 'button' ? event.target : event.target.parentNode;
+  
+  // Deactivate the previous button.
+  const prevButton = document.querySelector('.palette.active');
+  if (prevButton) {
+    prevButton.classList.remove('active');
+  }
+  
+  // Activate this one.
+  btn.classList.add('active');
+  forceVoiceDrawing = -2;
 }
 
 function activateBrush(event, brush) {
@@ -121,6 +136,9 @@ function activateBrush(event, brush) {
   brushSize = brush;
 }
 
+/* 
+ * Error messages
+ */
 function showEmptyNoteSequenceError() {
   error.textContent = 'Draw some 🎵 first!';
   setTimeout(clearError, 2000);
