@@ -6,6 +6,7 @@ model.initialize();
 let isMouseDown = false;
 let isAnimating = false;
 let forceVoiceDrawing = undefined;
+let brushSize = 1;
 
 init();
 
@@ -90,14 +91,14 @@ function merge() {
 }
 
 function activateVoice(event, voice) {
-  const btn = event.target;
+  const btn = event.target.localName === 'button' ? event.target : event.target.parentNode;
   // If we're clicking an activated button, then we're really deactivating it.
   if (btn && btn.classList.contains('active')) {
     btn.classList.remove('active');
     forceVoiceDrawing = undefined;
   } else {
-    // Deactivate the previous label.
-    const prevButton = document.querySelector('.legend.active');
+    // Deactivate the previous button.
+    const prevButton = document.querySelector('.palette.active');
     if (prevButton) {
       prevButton.classList.remove('active');
     }
@@ -105,6 +106,19 @@ function activateVoice(event, voice) {
     btn.classList.add('active');
     forceVoiceDrawing = voice;
   }
+}
+
+function activateBrush(event, brush) {
+  const btn = event.target.localName === 'button' ? event.target : event.target.parentNode;
+  
+  // Deactivate the previous button.
+  const prevButton = document.querySelector('.brush.active');
+  if (prevButton) {
+    prevButton.classList.remove('active');
+  }
+  // Activate this one.
+  btn.classList.add('active');
+  brushSize = brush;
 }
 
 function showEmptyNoteSequenceError() {
