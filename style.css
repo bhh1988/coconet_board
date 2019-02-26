@@ -156,7 +156,7 @@ button.legend {
   position: relative;
   top: 0;
   font-weight: bold;
-  margin: 2px 0px;
+  margin: 2px -2px;
   width: 66px;
   height: 66px;
   text-align: center;
