@@ -90,20 +90,19 @@ function merge() {
 }
 
 function activateVoice(event, voice) {
-  const parentLabel = event.target.parentElement;
-
+  const btn = event.target;
   // If we're clicking an activated button, then we're really deactivating it.
-  if (parentLabel && parentLabel.classList.contains('active')) {
-    parentLabel.classList.remove('active');
+  if (btn && btn.classList.contains('active')) {
+    btn.classList.remove('active');
     forceVoiceDrawing = undefined;
   } else {
     // Deactivate the previous label.
-    const prevButton = document.querySelector('label.active');
+    const prevButton = document.querySelector('.legend.active');
     if (prevButton) {
       prevButton.classList.remove('active');
     }
     // Activate this one.
-    parentLabel.classList.add('active');
+    btn.classList.add('active');
     forceVoiceDrawing = voice;
   }
 }

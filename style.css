@@ -163,7 +163,7 @@ label {
 }
 
 button.legend {
-  display: block;
+  display: inline-block;
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-border-radius:0px;
@@ -172,13 +172,23 @@ button.legend {
   line-height: inherit;
   letter-spacing: inherit;
   cursor: pointer;
-  margin: 1px;
   font-family: monospace;
-  border: none;
-  border-radius: 3px;
   padding: 0;
-  transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+  transition: top 0.2s ease-in-out, transform 0.2s ease-in-out, background 0.2s ease-in-out;
   background: transparent !important;
+  border: solid var(--purple) 2px;
+  color: var(--purple);
+  box-shadow: 4px 4px 0 var(--purple);
+  border-radius: 3px;
+  position: relative;
+  top: 0;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+button.legend:active, button.legend.active {
+  top: 4px;
+  box-shadow: none;
 }
 
 button.pixel:hover {
