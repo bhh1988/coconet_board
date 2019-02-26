@@ -12,12 +12,27 @@
       <div class="container" id="container"></div>
       <div class="settings">
         <h1>coucou 🐦</h1>
-        <h2>Legend:</h2>
-        <p>Click on one of these to only draw<br> pixels of that colour.</p>
-        <label><button class="pixel legend voice0" onclick="activateVoice(event, 0)" aria-label="draw soprano"></button>Soprano</label>
-        <label><button class="pixel legend voice1" onclick="activateVoice(event, 1)" aria-label="draw alto"></button>Alto</label>
-        <label><button class="pixel legend voice2" onclick="activateVoice(event, 2)" aria-label="draw tenor"></button>Tenor</label>
-        <label><button class="pixel legend voice3" onclick="activateVoice(event, 3)" aria-label="draw bass"></button>Bass</label>
+        <h2>Instruments</h2>
+        <button class="legend voice0" onclick="activateVoice(event, 0)" aria-label="draw soprano">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+            <br>Soprano  
+        </button>
+        <button class="legend voice1" onclick="activateVoice(event, 1)" aria-label="draw soprano">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+          <br>Alto
+        </button>
+          <button class="legend voice2" onclick="activateVoice(event, 2)" aria-label="draw soprano">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+          </button>
+          Tenor
+        </label>
+        <label>
+          <button class="legend voice3" onclick="activateVoice(event, )" aria-label="draw soprano">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+          </button>
+          Bass
+        </label>
+        
         <label><button class="pixel legend empty" onclick="activateVoice(event, -1)" aria-label="draw empty"></button>Empty</label>
 
         <h2>Controls:</h2>

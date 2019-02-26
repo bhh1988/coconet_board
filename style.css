@@ -17,10 +17,10 @@ html {
 }
 
 /* purples */
-.voice0 { background: #B1C1DB !important; }
-.voice1 { background: #4988B8 !important; }
-.voice2 { background: #0056a3 !important; }
-.voice3 { background: #09315d !important; }
+.voice0 { background: #B1C1DB !important; fill: #B1C1DB; }
+.voice1 { background: #4988B8 !important; fill: #4988B8; }
+.voice2 { background: #0056a3 !important; fill: #0056a3; }
+.voice3 { background: #09315d !important; fill: #09315d; }
 
 body {
   font-family: monospace;
@@ -156,6 +156,29 @@ a:link, a:visited {
   border-radius: 3px;
   padding: 0;
   transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+}
+
+label {
+  display: inline-block;
+}
+
+button.legend {
+  display: block;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-border-radius:0px;
+  appearance: none;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  margin: 1px;
+  font-family: monospace;
+  border: none;
+  border-radius: 3px;
+  padding: 0;
+  transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+  background: transparent !important;
 }
 
 button.pixel:hover {
