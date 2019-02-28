@@ -31,16 +31,14 @@ function init() {
   // Set up event listeners.
   const container = document.getElementById('container');
   
-  container.addEventListener('touchstart', (event) => { console.log('start'); isMouseDown = true; clickCell(event) }, {passive: true});
-  container.addEventListener('touchend', (event) => { console.log('end'); isMouseDown = false}, {passive: true});
+  container.addEventListener('touchstart', (event) => { isMouseDown = true; clickCell(event) }, {passive: true});
+  container.addEventListener('touchend', (event) => { isMouseDown = false}, {passive: true});
   container.addEventListener('touchmove', clickCellMove);
   
   const hasTouchEvents = ('ontouchstart' in window);
-  
   if (!hasTouchEvents) {
     container.addEventListener('mousedown', (event) => { isMouseDown = true; clickCell(event) });
     container.addEventListener('mouseup', () => isMouseDown = false);
-    
   }
   container.addEventListener('mouseover', clickCell);
   
