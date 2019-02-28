@@ -30,9 +30,17 @@ function init() {
 
   // Set up event listeners.
   const container = document.getElementById('container');
-  container.addEventListener('mousedown', (event) => { isMouseDown = true; clickCell(event) });
-  container.addEventListener('mouseup', () => isMouseDown = false);
+  
+  container.addEventListener('touchstart', (event) => { isMouseDown = true; clickCell(event) }, {passive: true});
+  container.addEventListener('touchend', (event) => {isMouseDown = false}, {passive: true});
+  
+  const hasTouchEvents = ('ontouchstart' in window);
+  if (!hasTouchEvents) {
+    container.addEventListener('mousedown', (event) => { isMouseDown = true; clickCell(event) });
+    container.addEventListener('mouseup', () => isMouseDown = false);
+  }
   container.addEventListener('mouseover', clickCell);
+  container.addEventListener('touchenter', clickCell);
   
   const defaultNoteSequence = '{"notes":[{"pitch":77,"instrument":0,"quantizedStartStep":8,"quantizedEndStep":9},{"pitch":77,"instrument":0,"quantizedStartStep":9,"quantizedEndStep":10},{"pitch":77,"instrument":0,"quantizedStartStep":10,"quantizedEndStep":11},{"pitch":77,"instrument":0,"quantizedStartStep":11,"quantizedEndStep":12},{"pitch":77,"instrument":0,"quantizedStartStep":12,"quantizedEndStep":13},{"pitch":77,"instrument":0,"quantizedStartStep":13,"quantizedEndStep":14},{"pitch":76,"instrument":0,"quantizedStartStep":0,"quantizedEndStep":1},{"pitch":76,"instrument":0,"quantizedStartStep":1,"quantizedEndStep":2},{"pitch":76,"instrument":0,"quantizedStartStep":2,"quantizedEndStep":3},{"pitch":76,"instrument":0,"quantizedStartStep":3,"quantizedEndStep":4},{"pitch":76,"instrument":0,"quantizedStartStep":4,"quantizedEndStep":5},{"pitch":76,"instrument":0,"quantizedStartStep":5,"quantizedEndStep":6},{"pitch":76,"instrument":0,"quantizedStartStep":6,"quantizedEndStep":7},{"pitch":76,"instrument":0,"quantizedStartStep":7,"quantizedEndStep":8},{"pitch":76,"instrument":0,"quantizedStartStep":14,"quantizedEndStep":15},{"pitch":76,"instrument":0,"quantizedStartStep":15,"quantizedEndStep":16},{"pitch":76,"instrument":0,"quantizedStartStep":24,"quantizedEndStep":25},{"pitch":76,"instrument":0,"quantizedStartStep":25,"quantizedEndStep":26},{"pitch":76,"instrument":0,"quantizedStartStep":26,"quantizedEndStep":27},{"pitch":76,"instrument":0,"quantizedStartStep":27,"quantizedEndStep":28},{"pitch":76,"instrument":0,"quantizedStartStep":28,"quantizedEndStep":29},{"pitch":76,"instrument":0,"quantizedStartStep":29,"quantizedEndStep":30},{"pitch":76,"instrument":0,"quantizedStartStep":30,"quantizedEndStep":31},{"pitch":76,"instrument":0,"quantizedStartStep":31,"quantizedEndStep":32},{"pitch":74,"instrument":0,"quantizedStartStep":16,"quantizedEndStep":17},{"pitch":74,"instrument":0,"quantizedStartStep":17,"quantizedEndStep":18},{"pitch":74,"instrument":0,"quantizedStartStep":18,"quantizedEndStep":19},{"pitch":74,"instrument":0,"quantizedStartStep":19,"quantizedEndStep":20},{"pitch":74,"instrument":0,"quantizedStartStep":22,"quantizedEndStep":23},{"pitch":74,"instrument":0,"quantizedStartStep":23,"quantizedEndStep":24},{"pitch":72,"instrument":0,"quantizedStartStep":20,"quantizedEndStep":21},{"pitch":72,"instrument":0,"quantizedStartStep":21,"quantizedEndStep":22}],"quantizationInfo":{"stepsPerQuarter":4},"totalQuantizedSteps":22}';
   board.drawNoteSequence(JSON.parse(defaultNoteSequence));
@@ -144,6 +152,8 @@ function activateVoice(event, voice) {
   // Activate this one.
   btn.classList.add('active');
   forceVoiceDrawing = voice;
+  
+  // Switch back to a small brush
 }
 
 function activateMask(event) {
