@@ -31,6 +31,8 @@ body {
   font-size: 14px;
   color: var(--purple);
   position: relative;
+  
+  overflow: hidden;
 }
 
 h1 {
