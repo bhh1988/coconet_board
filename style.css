@@ -86,6 +86,10 @@ a:link, a:visited {
   margin-right: 8px;
 }
 
+.row {
+  pointer-events: none;
+}
+
 .row span:first-child {
   margin-right: 4px;
 }
@@ -232,6 +236,7 @@ input.controls {
   border-radius: 3px;
   padding: 0;
   transition: transform 0.2s ease-in-out, background 0.1s ease-in-out;
+  pointer-events: auto;
 }
 
 .pixel.infilled {
