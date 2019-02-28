@@ -233,7 +233,8 @@ input.controls {
 }
 
 .pixel.infilled {
-  border: 1px dashed black;
+  border: 1px solid white;
+  box-shadow: 0px 0px 8px var(--purple);
 }
 
 .pixel.masked {

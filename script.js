@@ -50,7 +50,7 @@ function clickCell(event) {
   // If we're not erasing, sound it out.
   if (forceVoiceDrawing > -1) {
     player.playNoteDown({pitch: 81 - x, velocity: 80});
-    setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 100);
+    setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 150);
   }
   
   // Draw with the correct brush size.
@@ -116,9 +116,11 @@ function infill() {
     // Style the Coconet notes differently.
     for (let i = 0; i < output.notes.length; i++) {
       const note = output.notes[i];
+      
       // If we didn't have this note before, it's infilled.
-      if (!pitchToTime[note.pitch] && pitchToTime[note.pitch].indexOf(note.quantizedStartStep) === -1) {
-        const el = 
+      if (!pitchToTime[note.pitch] || (pitchToTime[note.pitch] && pitchToTime[note.pitch].indexOf(note.quantizedStartStep) === -1)) {
+        const uiButton = document.querySelector(`.pixel[data-row="${81 - note.pitch}"][data-col="${note.quantizedStartStep}"]`);
+        uiButton.classList.add('infilled');
       }
     }
   });
