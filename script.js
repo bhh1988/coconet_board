@@ -20,6 +20,13 @@ function init() {
       document.getElementById('container').classList.remove('playing');
     }
   };
+  
+  // Loadd all sounds.
+  const allNotes = [];
+  for (let i = 36; i < 82; i++) {
+    allNotes.push({pitch: i, velocity: 80});
+  }
+  player.loadSamples({notes: allNotes});
 
   // Set up event listeners.
   const container = document.getElementById('container');
@@ -40,6 +47,12 @@ function clickCell(event) {
   }
   const x = parseInt(button.dataset.row);
   const y = parseInt(button.dataset.col);
+  
+  if (forceVoiceDrawing > -1) {
+    player.playNoteDown({pitch: 81 - x, velocity: 80});
+    setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 100);
+    
+  }
   
   // The next brushSize buttons.
   for (let i = 0; i < brushSize; i++) {
