@@ -151,9 +151,13 @@ function activateVoice(event, voice) {
   }
   // Activate this one.
   btn.classList.add('active');
-  forceVoiceDrawing = voice;
   
-  // Switch back to a small brush
+  // Switch back to a small brush if we were erasing
+  if (voice > -1 && forceVoiceDrawing < 0) {
+    defaultBrush.click();
+  }
+  
+  forceVoiceDrawing = voice;
 }
 
 function activateMask(event) {
