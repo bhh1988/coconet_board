@@ -31,9 +31,9 @@ function init() {
   // Set up event listeners.
   const container = document.getElementById('container');
   
-  container.addEventListener('touchstart', (event) => { isMouseDown = true; clickCell(event) }, {passive: true});
-  container.addEventListener('touchend', (event) => {isMouseDown = false}, {passive: true});
-  container.addEventListener('touchenter', clickCell);
+  container.addEventListener('touchstart', (event) => { console.log('start'); isMouseDown = true; clickCell(event) }, {passive: true});
+  container.addEventListener('touchend', (event) => { console.log('end'); isMouseDown = false}, {passive: true});
+  container.addEventListener('touchmove', clickCellMove);
   
   const hasTouchEvents = ('ontouchstart' in window);
   
@@ -50,6 +50,31 @@ function init() {
 function clickCell(event) {
   console.log(event);
   const button = event.target;
+  if (button.localName !== 'button' || !isMouseDown) {
+    return;
+  }
+  
+  const x = parseInt(button.dataset.row);
+  const y = parseInt(button.dataset.col);
+  console.log(x,y, button);
+  
+  // If we're not erasing, sound it out.
+  if (forceVoiceDrawing > -1) {
+    player.playNoteDown({pitch: 81 - x, velocity: 80});
+    setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 150);
+  }
+  
+  // Draw with the correct brush size.
+  for (let i = 0; i < brushSize; i++) {
+    for (let j = 0; j < brushSize; j++) {
+      board.toggleCell(x + i, y + j, forceVoiceDrawing);
+    }
+  }
+}
+
+function clickCellMove(event) {
+  debugger
+  const button = document.elementFromPoint(event.clientX, event.clientY);
   if (button.localName !== 'button' || !isMouseDown) {
     return;
   }
