@@ -232,6 +232,10 @@ input.controls {
   transition: transform 0.2s ease-in-out, background 0.1s ease-in-out;
 }
 
+.pixel.infilled {
+  border: 1px dashed black;
+}
+
 .pixel.masked {
   background: white;
   border: 1px dashed var(--light);

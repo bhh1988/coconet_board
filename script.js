@@ -1,14 +1,14 @@
 const board = window.board;
 const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
-const model = new mm.Coconet('https://storage.googleapis.com/magentadata/js/checkpoints/coconet/bach');
-model.initialize();
-
 let isMouseDown = false;
 let isAnimating = false;
 let forceVoiceDrawing = 0;
 let brushSize = 1;
 
 init();
+
+const model = new mm.Coconet('https://storage.googleapis.com/magentadata/js/checkpoints/coconet/bach');
+model.initialize();
 
 function init() {
   player.callbackObject = {
@@ -21,7 +21,7 @@ function init() {
     }
   };
   
-  // Loadd all sounds.
+  // Load all SoundFonts so that they're ready for clicking.
   const allNotes = [];
   for (let i = 36; i < 82; i++) {
     allNotes.push({pitch: i, velocity: 80});
@@ -40,21 +40,20 @@ function init() {
 
 function clickCell(event) {
   const button = event.target;
-
-  // We only care about clicking on the buttons, not the container itself.
   if (button.localName !== 'button' || !isMouseDown) {
     return;
   }
+  
   const x = parseInt(button.dataset.row);
   const y = parseInt(button.dataset.col);
   
+  // If we're not erasing, sound it out.
   if (forceVoiceDrawing > -1) {
     player.playNoteDown({pitch: 81 - x, velocity: 80});
     setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 100);
-    
   }
   
-  // The next brushSize buttons.
+  // Draw with the correct brush size.
   for (let i = 0; i < brushSize; i++) {
     for (let j = 0; j < brushSize; j++) {
       board.toggleCell(x + i, y + j, forceVoiceDrawing);
@@ -95,10 +94,33 @@ function infill() {
   error.textContent = 'The robots are working...';
   controls.setAttribute('disabled', true);
   
+  // Put the original sequence in a map so we can diff it later.
+  const pitchToTime = {};
+  for (let i = 0; i < sequence.notes.length; i++) {
+    const note = sequence.notes[i];
+    if (!pitchToTime[note.pitch]) {
+      pitchToTime[note.pitch] = [];
+    }
+    pitchToTime[note.pitch].push(note.quantizedStartStep);
+  }
+  
+  // Clear all the previous "infill" ui.
+  const els = document.querySelectorAll('.pixel.infilled');
+  for (let i = 0; i < els.length; i++) {els[i].classList.remove('infilled'); }
+  
   model.infill(sequence, parseFloat(inputTemp.value)).then((output) => {
-    board.drawNoteSequence(output);
     error.textContent = '';
     controls.removeAttribute('disabled');
+    board.drawNoteSequence(output);
+    
+    // Style the Coconet notes differently.
+    for (let i = 0; i < output.notes.length; i++) {
+      const note = output.notes[i];
+      // If we didn't have this note before, it's infilled.
+      if (!pitchToTime[note.pitch] && pitchToTime[note.pitch].indexOf(note.quantizedStartStep) === -1) {
+        const el = 
+      }
+    }
   });
 }
 
