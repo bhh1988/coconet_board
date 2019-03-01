@@ -109,9 +109,7 @@ function playOrPause() {
       return;
     }
     container.classList.add('playing');
-    player.loadSamples(sequence).then(() => {
-      player.start(sequence);
-    });
+    merge();
   }
   isAnimating = !isAnimating;
   btnPlay.textContent = isAnimating? 'Stop' : 'Play';
@@ -211,6 +209,10 @@ function activateBrush(event, brush) {
   brushSize = brush;
 }
 
+function save() {
+  const seq = mm.sequences.mergeConsecutiveNotes(board.getNoteSequence());
+  saveAs(new File([mm.sequenceProtoToMidi(seq)], 'bach.mid'));
+}
 /* 
  * Error messages
  */
