@@ -203,15 +203,18 @@ class Board {
   }
   
   noScale() {
-    // Show all pixels.
-    const pixels = document.querySelectorAll(`.pixel`);
-    for (let i = 0; i < pixels.length; i++) {
-      pixels[i].hidden = false;
+    const rows = document.querySelectorAll(`#container .row`);
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].hidden = false;
     }
   }
   
   showScale(scale) {
     this.noScale();
+    if (scale === -1) {
+      return;
+    }
+    
     const notes = SCALES[scale].notes;
     
     // Hide the pixels that aren't in this scale.
@@ -219,7 +222,7 @@ class Board {
     for (let i = 0; i < rows.length; i++) {
       const pitch = parseInt(rows[i].dataset.pitch);
       if (notes.indexOf(pitch) === -1) {
-        pixels[i].hidden = false;
+        rows[i].hidden = true;
       }
     }
     

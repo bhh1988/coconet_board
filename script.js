@@ -4,6 +4,7 @@ let isMouseDown = false;
 let isAnimating = false;
 let paletteVoice = 0;
 let brushSize = 1;
+let paletteScale = -1;
 
 init();
 
@@ -142,6 +143,7 @@ function infill() {
     error.textContent = '';
     controls.removeAttribute('disabled');
     board.drawNoteSequence(output);
+    board.showScale(paletteScale);
     
     // Style the Coconet notes differently.
     for (let i = 0; i < output.notes.length; i++) {
@@ -219,12 +221,8 @@ function activateScale(event, scale) {
   }
   // Activate this one.
   btn.classList.add('active');
-  
-  if (scale == -1) {
-    board.noScale();
-  } else {
-    board.showScale(scale);
-  }
+  paletteScale = scale;
+  board.showScale(scale);
 }
 
 function save() {
