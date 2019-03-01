@@ -219,13 +219,13 @@ input.controls {
   visibility: visible;
   height: initial;
   opacity: 1;
-  transition: visibility 0s linear 300ms, opacity 300ms;
 }
 .row.hidden {
   visibility: hidden;
   opacity: 0;
   height: 0;
-  transition: visibility 0s linear 300ms, opacity 300ms;
+  
+  transition: opacity 0.2s;
 } 
 
 .pixel {
