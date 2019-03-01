@@ -3,7 +3,7 @@
 }
 
 [hidden] {
-  display: none !important;
+  visibility: hidden !important;
 }
 
 [disabled] {
@@ -219,8 +219,14 @@ input.controls {
 /***********************
  * Note pixels
  ***********************/
+.row {
+  visibility: visible;
+  transition: visibility 0.2s ease-in-out;
+}
+
 .pixel {
   display: inline-block;
+  visibility: visible;
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-border-radius:0px;

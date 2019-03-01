@@ -96,6 +96,7 @@ function clickCellMove(event) {
 
 function reset() {
   board.reset();
+  board.showScale(paletteScale);
 }
 
 function playOrPause() {
@@ -169,7 +170,7 @@ function activateVoice(event, voice) {
   const btn = event.target.localName === 'button' ? event.target : event.target.parentNode;
   
   // Deactivate the previous button.
-  const prevButton = document.querySelector('.palette.active');
+  const prevButton = document.querySelector('.palette.voice.active');
   if (prevButton) {
     prevButton.classList.remove('active');
   }
@@ -182,20 +183,6 @@ function activateVoice(event, voice) {
   }
   
   paletteVoice = voice;
-}
-
-function activateMask(event) {
-  const btn = event.target.localName === 'button' ? event.target : event.target.parentNode;
-  
-  // Deactivate the previous button.
-  const prevButton = document.querySelector('.palette.active');
-  if (prevButton) {
-    prevButton.classList.remove('active');
-  }
-  
-  // Activate this one.
-  btn.classList.add('active');
-  paletteVoice = -2;
 }
 
 function activateBrush(event, brush) {
