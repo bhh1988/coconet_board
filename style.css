@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-[hidden] {
-  visibility: hidden !important;
-}
-
 [disabled] {
   opacity: 0.5;
   pointer-events: none;
@@ -221,8 +217,16 @@ input.controls {
  ***********************/
 .row {
   visibility: visible;
-  transition: visibility 0.2s ease-in-out;
+  height: initial;
+  opacity: 1;
+  transition: visibility 0s linear 300ms, opacity 300ms;
 }
+.row.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+} 
 
 .pixel {
   display: inline-block;

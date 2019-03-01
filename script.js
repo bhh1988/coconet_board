@@ -144,7 +144,8 @@ function infill() {
     error.textContent = '';
     controls.removeAttribute('disabled');
     board.drawNoteSequence(output);
-    board.showScale(paletteScale);
+    // Pop out.
+    defaultScale.click();
     
     // Style the Coconet notes differently.
     for (let i = 0; i < output.notes.length; i++) {

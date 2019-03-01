@@ -205,7 +205,7 @@ class Board {
   noScale() {
     const rows = document.querySelectorAll(`#container .row`);
     for (let i = 0; i < rows.length; i++) {
-      rows[i].hidden = false;
+      rows[i].classList.remove('hidden');
     }
   }
   
@@ -222,7 +222,7 @@ class Board {
     for (let i = 0; i < rows.length; i++) {
       const pitch = parseInt(rows[i].dataset.pitch);
       if (notes.indexOf(pitch) === -1) {
-        rows[i].hidden = true;
+        rows[i].classList.add('hidden');
       }
     }
     
