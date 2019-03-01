@@ -237,6 +237,10 @@ input.controls {
   pointer-events: auto;
 }
 
+.container .row .pixel:nth-child(4n+6), .container .row .pixel:first-of-type {
+    background: #f9dccd;
+}
+
 .pixel.infilled {
   border: 1px solid #DE1C56;
   box-shadow: 0px 0px 8px #DE1C56;
