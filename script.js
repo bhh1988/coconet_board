@@ -219,6 +219,12 @@ function activateScale(event, scale) {
   }
   // Activate this one.
   btn.classList.add('active');
+  
+  if (scale == -1) {
+    board.noScale();
+  } else {
+    board.showScale(scale);
+  }
 }
 
 function save() {

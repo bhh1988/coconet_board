@@ -27,9 +27,12 @@ class Board {
 
     // Recreate the board.
     for (let i = 0; i < PIXELS_HEIGHT; i++) {
+      const pitch = MAX_PITCH - i;
+      
       this.data.push([]);
       const rowEl = document.createElement('div');
       rowEl.classList.add('row');
+      rowEl.dataset.pitch = pitch;
       this.ui.container.appendChild(rowEl);
 
       for (let j = 0; j < PIXELS_WIDTH; j++) {
@@ -39,18 +42,18 @@ class Board {
         button.classList.add('pixel');
         button.dataset.row = i;
         button.dataset.col = j;
+        button.dataset.pitch = pitch;
 
         // Add a pitch label.
         if (j === 0) {
           const span = document.createElement('span');
-          span.textContent = MAX_PITCH - i;
+          span.textContent = pitch;
           rowEl.appendChild(span);
         }
         rowEl.appendChild(button);
       }
       // Add a voice label.
       for (let v = 0; v < RANGES.length; v++) {
-        const pitch = MAX_PITCH - i;
         if (this.isPitchInRange(pitch, v)) {
           const span = document.createElement('span');
           span.setAttribute('class', `pixel voice${v}`);
@@ -184,11 +187,6 @@ class Board {
       }
     }
 
-    // const bars = document.querySelectorAll(`.pixel[data-col="${c}"]`);
-    // for (let p = 0; p < bars.length; p++) {
-    //   bars[p].classList.add('bar');
-    // }
-
     const pixels = document.querySelectorAll(`.pixel.voice${v}[data-row="${r}"][data-col="${c}"]`);
     for (let p = 0; p < pixels.length; p++) {
       pixels[p].classList.remove('bar');
@@ -202,5 +200,28 @@ class Board {
       on[p].classList.remove('bar');
       on[p].classList.remove('active');
     }
+  }
+  
+  noScale() {
+    // Show all pixels.
+    const pixels = document.querySelectorAll(`.pixel`);
+    for (let i = 0; i < pixels.length; i++) {
+      pixels[i].hidden = false;
+    }
+  }
+  
+  showScale(scale) {
+    this.noScale();
+    const notes = SCALES[scale].notes;
+    
+    // Hide the pixels that aren't in this scale.
+    const rows = document.querySelectorAll(`#container .row`);
+    for (let i = 0; i < rows.length; i++) {
+      const pitch = parseInt(rows[i].dataset.pitch);
+      if (notes.indexOf(pitch) === -1) {
+        pixels[i].hidden = false;
+      }
+    }
+    
   }
 }
