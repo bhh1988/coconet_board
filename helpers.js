@@ -8,6 +8,9 @@ const MAX_PITCH = 81;
 
 // Soprano, Alto, Tenor, Bass.
 const RANGES = [[60, 81], [52, 74], [46, 69], [36, 66]];
+const SCALES = [
+  {name: 'C', notes: [81,79,77,76,74,72,71,69,67,65,64,62,60,59,57,55,53,52,50,48,47,45,43,41,40,38,36] }
+];
 
 class Board {
   constructor() {

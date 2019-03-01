@@ -2,7 +2,7 @@ const board = window.board;
 const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 let isMouseDown = false;
 let isAnimating = false;
-let forceVoiceDrawing = 0;
+let paletteVoice = 0;
 let brushSize = 1;
 
 init();
@@ -56,7 +56,7 @@ function clickCell(event) {
   const y = parseInt(button.dataset.col);
   
   // If we're not erasing, sound it out.
-  if (forceVoiceDrawing > -1) {
+  if (paletteVoice > -1) {
     player.playNoteDown({pitch: 81 - x, velocity: 80});
     setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 150);
   }
@@ -64,7 +64,7 @@ function clickCell(event) {
   // Draw with the correct brush size.
   for (let i = 0; i < brushSize; i++) {
     for (let j = 0; j < brushSize; j++) {
-      board.toggleCell(x + i, y + j, forceVoiceDrawing);
+      board.toggleCell(x + i, y + j, paletteVoice);
     }
   }
 }
@@ -80,7 +80,7 @@ function clickCellMove(event) {
   const y = parseInt(button.dataset.col);
   
   // If we're not erasing, sound it out.
-  if (forceVoiceDrawing > -1) {
+  if (paletteVoice > -1) {
     player.playNoteDown({pitch: 81 - x, velocity: 80});
     setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 150);
   }
@@ -88,7 +88,7 @@ function clickCellMove(event) {
   // Draw with the correct brush size.
   for (let i = 0; i < brushSize; i++) {
     for (let j = 0; j < brushSize; j++) {
-      board.toggleCell(x + i, y + j, forceVoiceDrawing);
+      board.toggleCell(x + i, y + j, paletteVoice);
     }
   }
 }
@@ -175,11 +175,11 @@ function activateVoice(event, voice) {
   btn.classList.add('active');
   
   // Switch back to a small brush if we were erasing
-  if (voice > -1 && forceVoiceDrawing < 0) {
+  if (voice > -1 && paletteVoice < 0) {
     defaultBrush.click();
   }
   
-  forceVoiceDrawing = voice;
+  paletteVoice = voice;
 }
 
 function activateMask(event) {
@@ -193,7 +193,7 @@ function activateMask(event) {
   
   // Activate this one.
   btn.classList.add('active');
-  forceVoiceDrawing = -2;
+  paletteVoice = -2;
 }
 
 function activateBrush(event, brush) {
@@ -207,6 +207,18 @@ function activateBrush(event, brush) {
   // Activate this one.
   btn.classList.add('active');
   brushSize = brush;
+}
+
+function activateScale(event, scale) {
+  const btn = event.target.localName === 'button' ? event.target : event.target.parentNode;
+  
+  // Deactivate the previous button.
+  const prevButton = document.querySelector('.palette.scale.active');
+  if (prevButton) {
+    prevButton.classList.remove('active');
+  }
+  // Activate this one.
+  btn.classList.add('active');
 }
 
 function save() {

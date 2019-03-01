@@ -57,9 +57,18 @@
         <section>
           <h2>Controls</h2>
           <div id="controls">
-            <button class="button controls" onclick="merge()">Play 🎵</button>
+            <button class="button controls" onclick="merge()" id="btnPlay">Play 🎵</button>
             <button class="button controls" onclick="reset()">Reset</button>
             <button class="button controls" onclick="save()">Save</button>
+            
+            <h2>Scales</h2>
+            <button class="button palette scale active" onclick="activateScale(event, -1)">
+              <br>All
+            </button>
+            <button class="button palette scale" onclick="activateScale(event, 0)">
+              <br>C Major  
+            </button>
+            
             
             <h2>Temperature</h2>
             <input class="button controls" id="inputTemp" type="number" min="0" max="2" step="0.1" value="0.99">
