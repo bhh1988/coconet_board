@@ -19,6 +19,7 @@ function init() {
       isAnimating = false;
       board.playEnd();
       document.getElementById('container').classList.remove('playing');
+      secondaryControls.removeAttribute('disabled');
     }
   };
   
@@ -97,6 +98,7 @@ function playOrPause() {
     }
     btnPlay.textContent = 'Stop';
     container.classList.add('playing');
+    secondaryControls.setAttribute('disabled', true);
     merge();
   }
   isAnimating = !isAnimating;

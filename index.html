@@ -57,16 +57,17 @@
           <div id="controls">
             <h2>Controls</h2>
             
-            <button class="button controls" onclick="merge()" id="btnPlay">Play</button>
-            <button class="button controls" onclick="reset()">Reset</button>
-            <button class="button controls" onclick="infill()">Infill</button>
-            <button class="button controls" onclick="save()">Save</button>
-            
-            <br>
-            <label>
-              Temperature
-              <input class="button controls" id="inputTemp" type="number" min="0" max="2" step="0.1" value="0.99">
-            </label>
+            <button class="button controls" onclick="playOrPause()" id="btnPlay">Play</button>
+            <div id="secondaryControls">
+              <button class="button controls" onclick="reset()">Reset</button>
+              <button class="button controls" onclick="infill()">Infill</button>
+              <button class="button controls" onclick="save()">Save</button>
+              <br>
+              <label>
+                Temperature
+                <input class="button controls" id="inputTemp" type="number" min="0" max="2" step="0.1" value="0.99">
+              </label>
+            </div>
             
             <h2>Scales</h2>
             <button class="button palette scale active" onclick="activateScale(event, -1)" id="defaultScale">
