@@ -80,12 +80,9 @@ class Board {
     
     if (voice === undefined) {
       dot.on = this.getNextVoice(pitch, dot.on)
-    } else if (voice === -1) {
-      // Erasing!
-      dot.on = -1;
-    } else if (voice === -2) {
-      // Masking!
-      dot.on = -2;
+    } else if (voice === -1 || voice === -2) {
+      // Erasing! Masking!
+      dot.on = voice;
     } else {
       // We are drawing a voice. We should try to use it, unless we're drawing
       // out of range, in which case default to the next available voice.
@@ -145,25 +142,19 @@ class Board {
   }
   
   getMaskSequence() {
-    const sequence = {notes:[], quantizationInfo: {stepsPerQuarter: 4}};
+    const mask = [];
     for (let i = 0; i < PIXELS_HEIGHT; i++) {
       for (let j = 0; j < PIXELS_WIDTH; j++) {
         // This note is on.
-        if (this.data[i][j].on >= 0) {
-          sequence.notes.push(
-            { pitch: 81 - i,
-              instrument: this.data[i][j].on,
-              quantizedStartStep: j,
-              quantizedEndStep: j + 1
-            },
-          );
+        if (this.data[i][j].on === -2) {
+          mask.push({step: i, voice: 0});
+          mask.push({step: i, voice: 1});
+          mask.push({step: i, voice: 2});
+          mask.push({step: i, voice: 3});
         }
       }
     }
-    if (sequence.notes.length !== 0) {
-      sequence.totalQuantizedSteps = PIXELS_WIDTH;
-    }
-    return sequence;
+    return mask.length > 0 ? mask : undefined;
   }
 
   drawNoteSequence(ns) {
