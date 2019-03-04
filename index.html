@@ -53,13 +53,20 @@
       <div class="container" id="container"></div>
       
       <div class="settings">
-        <h1>&nbsp;</h1>  
         <section>
-          <h2>Controls</h2>
           <div id="controls">
-            <button class="button controls" onclick="merge()" id="btnPlay">Play 🎵</button>
+            <h2>Controls</h2>
+            
+            <button class="button controls" onclick="merge()" id="btnPlay">Play</button>
             <button class="button controls" onclick="reset()">Reset</button>
+            <button class="button controls" onclick="infill()">Infill</button>
             <button class="button controls" onclick="save()">Save</button>
+            
+            <br>
+            <label>
+              Temperature
+              <input class="button controls" id="inputTemp" type="number" min="0" max="2" step="0.1" value="0.99">
+            </label>
             
             <h2>Scales</h2>
             <button class="button palette scale active" onclick="activateScale(event, -1)" id="defaultScale">
@@ -71,7 +78,6 @@
             <button class="button palette scale" onclick="activateScale(event, 1)">
               D Major  
             </button>
-            <br>
             <button class="button palette scale" onclick="activateScale(event, 2)">
               E Major  
             </button>
@@ -81,7 +87,6 @@
             <button class="button palette scale" onclick="activateScale(event, 4)">
               G Major  
             </button>
-            <br>
             <button class="button palette scale" onclick="activateScale(event, 5)">
               A Major  
             </button>
@@ -89,11 +94,6 @@
               B Major  
             </button>
             
-            <h2>Temperature</h2>
-            <input class="button controls" id="inputTemp" type="number" min="0" max="2" step="0.1" value="0.99">
-            
-            <h2>Model</h2>
-            <button class="button controls" onclick="infill()">Infill</button>
             
           </div>
         </section>

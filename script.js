@@ -34,7 +34,7 @@ function init() {
   
   container.addEventListener('touchstart', (event) => { isMouseDown = true; clickCell(event) }, {passive: true});
   container.addEventListener('touchend', (event) => { isMouseDown = false}, {passive: true});
-  container.addEventListener('touchmove', clickCellMove);
+  container.addEventListener('touchmove', clickCell);
   
   const hasTouchEvents = ('ontouchstart' in window);
   if (!hasTouchEvents) {
@@ -48,31 +48,15 @@ function init() {
 }
 
 function clickCell(event) {
-  const button = event.target;
-  if (button.localName !== 'button' || !isMouseDown) {
-    return;
+  let button;
+  
+  // Check if this is a touch event or a mouse event.
+  if (event.changedTouches) {
+    button = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+  } else {
+    button = event.target;
   }
   
-  const x = parseInt(button.dataset.row);
-  const y = parseInt(button.dataset.col);
-  
-  // If we're not erasing, sound it out.
-  if (paletteVoice > -1) {
-    player.playNoteDown({pitch: 81 - x, velocity: 80});
-    setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 150);
-  }
-  
-  // Draw with the correct brush size.
-  for (let i = 0; i < brushSize; i++) {
-    for (let j = 0; j < brushSize; j++) {
-      board.toggleCell(x + i, y + j, paletteVoice);
-    }
-  }
-}
-
-// TODO: refactor this.
-function clickCellMove(event) {
-  const button = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
   if (button.localName !== 'button' || !isMouseDown) {
     return;
   }
@@ -120,7 +104,7 @@ function playOrPause() {
 function infill() {
   const sequence = board.getNoteSequence();
   const mask = board.getMaskSequence();
-  debugger
+  
   if (sequence.notes.length === 0) {
     showEmptyNoteSequenceError();
     return;

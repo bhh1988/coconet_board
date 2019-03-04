@@ -77,9 +77,12 @@ class Board {
     if (!uiButton) {
       return;
     }
+  
     const row = uiButton.parentElement;
-    debugger
-    
+    if (row.classList.contains('hidden')) {
+        return;
+    }
+        
     const dot = this.data[i][j];
     const pitch = MAX_PITCH - i;
 

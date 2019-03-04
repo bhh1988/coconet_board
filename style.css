@@ -74,6 +74,7 @@ a:link, a:visited {
 .settings {
   text-align: left;
   margin: 0 24px;
+  max-width: 200px;
 }
 
 .settings > label > button {
@@ -223,10 +224,13 @@ input.controls {
 .row.hidden {
   visibility: hidden;
   opacity: 0;
-  height: 0;
-  
+  height: 0;  
   transition: opacity 0.2s;
 } 
+.row.hidden .pixel {
+  pointer-events: none;
+}
+
 
 .pixel {
   display: inline-block;
