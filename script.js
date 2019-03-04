@@ -119,6 +119,7 @@ function playOrPause() {
 
 function infill() {
   const sequence = board.getNoteSequence();
+  const mask = board.getMask();
   if (sequence.notes.length === 0) {
     showEmptyNoteSequenceError();
     return;
@@ -140,7 +141,8 @@ function infill() {
   const els = document.querySelectorAll('.pixel.infilled');
   for (let i = 0; i < els.length; i++) {els[i].classList.remove('infilled'); }
   
-  model.infill(sequence, parseFloat(inputTemp.value)).then((output) => {
+  //
+  model.infill(sequence, {temperature: parseFloat(inputTemp.value)}).then((output) => {
     error.textContent = '';
     controls.removeAttribute('disabled');
     board.drawNoteSequence(output);

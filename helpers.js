@@ -143,6 +143,28 @@ class Board {
     }
     return sequence;
   }
+  
+  getMaskSequence() {
+    const sequence = {notes:[], quantizationInfo: {stepsPerQuarter: 4}};
+    for (let i = 0; i < PIXELS_HEIGHT; i++) {
+      for (let j = 0; j < PIXELS_WIDTH; j++) {
+        // This note is on.
+        if (this.data[i][j].on >= 0) {
+          sequence.notes.push(
+            { pitch: 81 - i,
+              instrument: this.data[i][j].on,
+              quantizedStartStep: j,
+              quantizedEndStep: j + 1
+            },
+          );
+        }
+      }
+    }
+    if (sequence.notes.length !== 0) {
+      sequence.totalQuantizedSteps = PIXELS_WIDTH;
+    }
+    return sequence;
+  }
 
   drawNoteSequence(ns) {
     console.log(ns.totalQuantizedSteps);
