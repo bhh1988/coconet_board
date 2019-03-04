@@ -143,14 +143,21 @@ class Board {
   
   getMaskSequence() {
     const mask = [];
+    const stepsAdded = [];
     for (let i = 0; i < PIXELS_HEIGHT; i++) {
       for (let j = 0; j < PIXELS_WIDTH; j++) {
+        // If we already have this column, we're good.
+        if (stepsAdded.indexOf(j) !== -1) {
+          continue;
+        }
+        
         // This note is on.
         if (this.data[i][j].on === -2) {
-          mask.push({step: i, voice: 0});
-          mask.push({step: i, voice: 1});
-          mask.push({step: i, voice: 2});
-          mask.push({step: i, voice: 3});
+          mask.push({step: j, voice: 0});
+          mask.push({step: j, voice: 1});
+          mask.push({step: j, voice: 2});
+          mask.push({step: j, voice: 3});
+          stepsAdded.push(j);
         }
       }
     }
