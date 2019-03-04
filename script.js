@@ -88,17 +88,18 @@ function playOrPause() {
   if (isAnimating) {
     container.classList.remove('playing');
     player.stop();
+    btnPlay.textContent = 'Play';
   } else {
     const sequence = board.getNoteSequence();
     if (sequence.notes.length === 0) {
       showEmptyNoteSequenceError();
       return;
     }
+    btnPlay.textContent = 'Stop';
     container.classList.add('playing');
     merge();
   }
   isAnimating = !isAnimating;
-  btnPlay.textContent = isAnimating? 'Stop' : 'Play';
 }
 
 function infill() {

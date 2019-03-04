@@ -133,6 +133,11 @@ class Board {
   getNoteSequence() {
     const sequence = {notes:[], quantizationInfo: {stepsPerQuarter: 4}};
     for (let i = 0; i < PIXELS_HEIGHT; i++) {
+      const row = document.querySelector(`.row[data-pitch="${MAX_PITCH - i}"]`);
+      if (row.classList.contains('hidden')) {
+        continue;
+      }
+      
       for (let j = 0; j < PIXELS_WIDTH; j++) {
         // This note is on.
         if (this.data[i][j].on >= 0) {
