@@ -108,7 +108,7 @@ class Board {
         const nextVoice = this.getNextVoice(pitch, voice);
         dot.on = nextVoice === -1 ? this.getNextVoice(pitch, -1) : nextVoice;
       }
-      board.updateHash();
+      this.updateHash();
     }
 
     if (dot.on === -1) {
@@ -120,26 +120,6 @@ class Board {
     }
   }
 
-  maskColumn(c) {
-    const uiButtons = document.querySelectorAll(`.pixel[data-col="${c}"]`);
-    
-    for (let i = 0; i < 46; i++) {
-      this.data[i][c].on = -2;
-      this.maskButton(uiButtons[i]);
-    }
-  }
-  
-  updateHash() {
-    let s = '';
-    for (let i = 0; i < PIXELS_HEIGHT; i++) {
-      for (let j = 0; j < PIXELS_WIDTH; j++) {
-        if (data[i][i].on > -1) {
-          s += `${MAX_PITCH - i}/${j},`;
-        }
-      }
-    }
-  }
-  
   resetButton(uiButton) {
     uiButton.setAttribute('class', 'pixel');
     uiButton.setAttribute('aria-label', 'cell, empty');
@@ -148,6 +128,15 @@ class Board {
   maskButton(uiButton) {
     uiButton.setAttribute('class', 'pixel masked');
     uiButton.setAttribute('aria-label', 'cell, masked');
+  }
+  
+  maskColumn(c) {
+    const uiButtons = document.querySelectorAll(`.pixel[data-col="${c}"]`);
+    
+    for (let i = 0; i < 46; i++) {
+      this.data[i][c].on = -2;
+      this.maskButton(uiButtons[i]);
+    }
   }
 
   voiceButton(uiButton, voice) {
@@ -219,7 +208,34 @@ class Board {
       this.voiceButton(uiButton, v);
     }
   }
-
+  
+  updateHash() {
+    let s = '';
+    for (let i = 0; i < PIXELS_HEIGHT; i++) {
+      for (let j = 0; j < PIXELS_WIDTH; j++) {
+        if (this.data[i][j].on > -1) {
+          s += `${MAX_PITCH - i}:${j}:${this.data[i][j].on},`;
+        }
+      }
+    }
+    window.location.hash = btoa(s);
+  }
+  
+  loadHash(hash) {
+    const s = atob(hash);
+    const steps = s.split(',');
+    const notes = []
+    for (let i = 0; i < steps.length; i++) {
+      const pair = steps[i].split(':');
+      notes.push({pitch: pair[0], instrument: pair[2], quantizedStartStep: pair[1], quantizedEndStep: parseInt(pair[1]) + 1});    
+    }
+    const ns = {};
+    ns.notes = notes;
+    ns.quantizationInfo = {'stepsPerQuarter':4};
+    ns.totalQuantizedSteps = 32;
+    this.drawNoteSequence(ns);
+  }
+  
   getNextVoice(pitch, thisVoice) {
     for (let v = thisVoice + 1; v < RANGES.length; v++) {
       if (this.isPitchInRange(pitch, v)) {
