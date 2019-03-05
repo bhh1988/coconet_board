@@ -177,7 +177,8 @@ a:link, a:visited {
 .controls {
   display: block;
   padding: 8px 12px;
-  margin: 8px 0;
+  margin-bottom: 8px;
+  margin-right: 8px;
   text-align: left;
   font-size: 16px;
   font-weight: 600;
