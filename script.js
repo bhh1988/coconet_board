@@ -15,11 +15,7 @@ function init() {
   player.callbackObject = {
     run: (note) => board.playStep(note),
     stop: () => {
-      btnPlay.textContent = 'Play';
-      isAnimating = false;
-      board.playEnd();
-      document.getElementById('container').classList.remove('playing');
-      secondaryControls.removeAttribute('disabled');
+      stop();
     }
   };
   
@@ -87,21 +83,34 @@ function reset() {
 function playOrPause() {
   const container = document.getElementById('container');
   if (isAnimating) {
-    container.classList.remove('playing');
     player.stop();
-    btnPlay.textContent = 'Play';
+    stop();
   } else {
     const sequence = board.getNoteSequence();
     if (sequence.notes.length === 0) {
       showEmptyNoteSequenceError();
       return;
     }
-    btnPlay.textContent = 'Stop';
-    container.classList.add('playing');
-    secondaryControls.setAttribute('disabled', true);
+    play();
     merge();
   }
   isAnimating = !isAnimating;
+}
+
+function play() {
+  btnPlay.hidden = true;
+  btnStop.hidden = false;
+  isAnimating = true;
+  document.getElementById('container').classList.add('playing');
+  secondaryControls.setAttribute('disabled', true);
+}
+function stop() {
+  btnPlay.hidden = false;
+  btnStop.hidden = true;
+  isAnimating = false;
+  board.playEnd();
+  document.getElementById('container').classList.remove('playing');
+  secondaryControls.removeAttribute('disabled');
 }
 
 function infill() {
@@ -129,7 +138,6 @@ function infill() {
   const els = document.querySelectorAll('.pixel.infilled');
   for (let i = 0; i < els.length; i++) {els[i].classList.remove('infilled'); }
   
-  //
   model.infill(sequence, {
     temperature: parseFloat(inputTemp.value),
     infillMask: mask

@@ -215,7 +215,7 @@ class Board {
     const r = MAX_PITCH - note.pitch;
     const c = note.quantizedStartStep;
 
-    const on =  document.querySelectorAll('.pixel.active, .pixel.bar');
+    const on =  document.querySelectorAll('.container .pixel.active, .pixel.bar');
     for (let p = 0; p < on.length; p++) {
       on[p].classList.remove('bar');
       if (on[p].dataset.col < c) {
@@ -231,7 +231,7 @@ class Board {
   }
 
   playEnd() {
-    const on =  document.querySelectorAll('.pixel.active, .pixel.bar');
+    const on =  document.querySelectorAll('.container .pixel.active, .pixel.bar');
     for (let p = 0; p < on.length; p++) {
       on[p].classList.remove('bar');
       on[p].classList.remove('active');

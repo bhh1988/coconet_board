@@ -3,9 +3,14 @@
 }
 
 [disabled] {
-  opacity: 0.5;
+  opacity: 0.3;
   pointer-events: none;
 }
+
+[hidden] {
+  display: none !important;
+}
+
 
 html {  
   --light: #F7E6DA;
@@ -176,10 +181,14 @@ a:link, a:visited {
   text-align: left;
   font-size: 16px;
   font-weight: 600;
-  min-width: 100px;
+  min-width: 120px;
   transition: background 0.2s ease-in-out;
   border-color: var(--purple);
   fill: var(--purple);
+}
+
+.controls svg {
+  vertical-align: middle;
 }
 
 .controls:hover {
