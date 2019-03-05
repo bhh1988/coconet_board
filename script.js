@@ -157,6 +157,7 @@ function infill() {
     error.textContent = '';
     controls.removeAttribute('disabled');
     board.drawNoteSequence(output);
+    
     // Pop out.
     defaultScale.click();
     

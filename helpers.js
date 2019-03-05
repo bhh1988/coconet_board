@@ -200,7 +200,6 @@ class Board {
   }
 
   drawNoteSequence(ns) {
-    console.log(ns.totalQuantizedSteps);
     this.reset();
     for(let n = 0; n < ns.notes.length; n++) {
       const note = ns.notes[n];
@@ -211,6 +210,7 @@ class Board {
       const uiButton = document.querySelector(`.pixel[data-row="${r}"][data-col="${c}"]`);
       this.voiceButton(uiButton, v);
     }
+    this.updateHash();
   }
   
   updateHash() {
@@ -222,7 +222,6 @@ class Board {
         }
       }
     }
-    
     window.location.hash = s.substring(0, s.length - 1);
   }
   
