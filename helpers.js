@@ -108,6 +108,9 @@ class Board {
         const nextVoice = this.getNextVoice(pitch, voice);
         dot.on = nextVoice === -1 ? this.getNextVoice(pitch, -1) : nextVoice;
       }
+    }
+    
+    if (dot.on > -2) {
       this.updateHash();
     }
 
@@ -169,6 +172,7 @@ class Board {
     if (sequence.notes.length !== 0) {
       sequence.totalQuantizedSteps = PIXELS_WIDTH;
     }
+    this.updateHash();
     return sequence;
   }
   
@@ -214,20 +218,22 @@ class Board {
     for (let i = 0; i < PIXELS_HEIGHT; i++) {
       for (let j = 0; j < PIXELS_WIDTH; j++) {
         if (this.data[i][j].on > -1) {
-          s += `${MAX_PITCH - i}:${j}:${this.data[i][j].on},`;
+          s += `${MAX_PITCH - i}/${j}/${this.data[i][j].on},`;
         }
       }
     }
-    window.location.hash = btoa(s);
+    
+    window.location.hash = s.substring(0, s.length - 1);
   }
   
-  loadHash(hash) {
-    const s = atob(hash);
+  loadHash(s) {
     const steps = s.split(',');
     const notes = []
     for (let i = 0; i < steps.length; i++) {
-      const pair = steps[i].split(':');
-      notes.push({pitch: pair[0], instrument: pair[2], quantizedStartStep: pair[1], quantizedEndStep: parseInt(pair[1]) + 1});    
+      const pair = steps[i].split('/');
+      
+      notes.push({pitch: parseInt(pair[0]), instrument: pair[2] || 0, 
+                  quantizedStartStep: parseInt(pair[1]), quantizedEndStep: parseInt(pair[1]) + 1});    
     }
     const ns = {};
     ns.notes = notes;

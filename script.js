@@ -40,10 +40,11 @@ function init() {
   }
   container.addEventListener('mouseover', clickCell);
   
-  const defaultHash = 'NzcvOCw3Ny85LDc3LzEwLDc3LzExLDc3LzEyLDc3LzEzLDc2LzAsNzYvMSw3Ni8yLDc2LzMsNzYvNCw3Ni81LDc2LzYsNzYvNyw3Ni8xNCw3Ni8xNSw3Ni8yNCw3Ni8yNSw3Ni8yNiw3Ni8yNyw3Ni8yOCw3Ni8yOSw3Ni8zMCw3Ni8zMSw3NC8xNiw3NC8xNyw3NC8xOCw3NC8xOSw3NC8yMiw3NC8yMyw3Mi8yMCw3Mi8yMSw=';
+  const defaultHash = '77/8/0,77/9/0,77/10/0,77/11/0,77/12/0,77/13/0,76/0/0,76/1/0,76/2/0,76/3/0,76/4/0,76/5/0,76/6/0,76/7/0,76/14/0,76/15/0,76/24/0,76/25/0,76/26/0,76/27/0,76/28/0,76/29/0,76/30/0,76/31/0,74/16/0,74/17/0,74/18/0,74/19/0,74/22/0,74/23/0,73/20/0,73/21/0';
   if (window.location.hash === '') {
     board.loadHash(defaultHash);
   } else {
+    board.loadHash(window.location.hash.substring(1));
   }
 }
 
