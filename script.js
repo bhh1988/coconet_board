@@ -67,12 +67,21 @@ function clickCell(event) {
     setTimeout(() => player.playNoteUp({pitch: 81 - x, velocity: 80}), 150);
   }
   
-  // Draw with the correct brush size.
-  for (let i = 0; i < brushSize; i++) {
+  // Masking masks the whole column.
+  if (paletteVoice === -2) {
+    
     for (let j = 0; j < brushSize; j++) {
-      board.toggleCell(x + i, y + j, paletteVoice);
+      board.toggleCell(i, y + j, paletteVoice);
+    }
+  } else {
+    // Draw with the correct brush size.
+    for (let i = 0; i < brushSize; i++) {
+      for (let j = 0; j < brushSize; j++) {
+        board.toggleCell(x + i, y + j, paletteVoice);
+      }
     }
   }
+  
 }
 
 function reset() {

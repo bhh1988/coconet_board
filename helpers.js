@@ -114,6 +114,11 @@ class Board {
     }
   }
 
+  maskColumn(i) {
+    const uiButton = document.querySelector(`.pixel[data-col="${i}"]`);
+          
+  }
+  
   resetButton(uiButton) {
     uiButton.setAttribute('class', 'pixel');
     uiButton.setAttribute('aria-label', 'cell, empty');
