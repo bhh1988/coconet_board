@@ -69,9 +69,8 @@ function clickCell(event) {
   
   // Masking masks the whole column.
   if (paletteVoice === -2) {
-    
     for (let j = 0; j < brushSize; j++) {
-      board.toggleCell(i, y + j, paletteVoice);
+      board.maskColumn(y + j);
     }
   } else {
     // Draw with the correct brush size.

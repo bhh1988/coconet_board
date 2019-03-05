@@ -114,9 +114,13 @@ class Board {
     }
   }
 
-  maskColumn(i) {
-    const uiButton = document.querySelector(`.pixel[data-col="${i}"]`);
-          
+  maskColumn(c) {
+    const uiButtons = document.querySelectorAll(`.pixel[data-col="${c}"]`);
+    
+    for (let i = 0; i < 46; i++) {
+      this.data[i][c].on = -2;
+      this.maskButton(uiButtons[i]);
+    }
   }
   
   resetButton(uiButton) {
