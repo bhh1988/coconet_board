@@ -143,6 +143,9 @@ a:link, a:visited {
   padding: 3px;
   box-shadow: 2px 2px 0px var(--purple);
 }
+.button.special {
+  background: #fff182 !important
+}
 
 .button:active, .button.active {
   border-style: solid;
@@ -176,6 +179,7 @@ a:link, a:visited {
   min-width: 100px;
   transition: background 0.2s ease-in-out;
   border-color: var(--purple);
+  fill: var(--purple);
 }
 
 .controls:hover {
