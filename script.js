@@ -113,7 +113,6 @@ function play() {
   btnStop.hidden = false;
   isAnimating = true;
   document.getElementById('container').classList.add('playing');
-  secondaryControls.setAttribute('disabled', true);
 }
 
 function stop() {
@@ -122,7 +121,6 @@ function stop() {
   isAnimating = false;
   board.playEnd();
   document.getElementById('container').classList.remove('playing');
-  secondaryControls.removeAttribute('disabled');
 }
 
 function infill() {
