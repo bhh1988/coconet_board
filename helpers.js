@@ -58,11 +58,16 @@ class Board {
         }
         rowEl.appendChild(button);
       }
+      
       // Add a voice label.
       for (let v = 0; v < RANGES.length; v++) {
         if (this.isPitchInRange(pitch, v)) {
           const span = document.createElement('span');
           span.setAttribute('class', `pixel voice${v}`);
+          rowEl.appendChild(span);
+        } else {
+          const span = document.createElement('span');
+          span.setAttribute('class', 'pixel white');
           rowEl.appendChild(span);
         }
       }
@@ -103,6 +108,7 @@ class Board {
         const nextVoice = this.getNextVoice(pitch, voice);
         dot.on = nextVoice === -1 ? this.getNextVoice(pitch, -1) : nextVoice;
       }
+      board.updateHash();
     }
 
     if (dot.on === -1) {
@@ -120,6 +126,17 @@ class Board {
     for (let i = 0; i < 46; i++) {
       this.data[i][c].on = -2;
       this.maskButton(uiButtons[i]);
+    }
+  }
+  
+  updateHash() {
+    let s = '';
+    for (let i = 0; i < PIXELS_HEIGHT; i++) {
+      for (let j = 0; j < PIXELS_WIDTH; j++) {
+        if (data[i][i].on > -1) {
+          s += `${MAX_PITCH - i}/${j},`;
+        }
+      }
     }
   }
   

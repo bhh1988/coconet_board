@@ -283,6 +283,10 @@ input.controls {
   border: 1px dashed var(--light);
 } 
 
+.pixel.white {
+  background: white !important;
+}
+
 button.pixel:hover {
   opacity: 0.7;
 }
