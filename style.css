@@ -306,6 +306,7 @@ button.pixel:hover {
  ***********************/
 .dialog {
   background: white;
+  text-align: left;
   padding: 24px;
   z-index: 10;
   position: fixed;
@@ -318,6 +319,12 @@ button.pixel:hover {
   border-radius: 3px;
   box-shadow: 10px 10px 0 var(--purple);
   transform: translateX(-50%);
+}
+
+#main.blur {
+  filter: blur(2px);
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 #fileInput {

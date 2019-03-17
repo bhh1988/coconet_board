@@ -234,6 +234,15 @@ function save() {
   saveAs(new File([mm.sequenceProtoToMidi(seq)], 'bach.mid'));
 }
 
+function toggleHelp() {
+  help.hidden = !help.hidden;
+  if (help.hidden) {
+    document.getElementById('main').classList.remove('blur');
+  } else {
+    document.getElementById('main').classList.add('blur');
+  }
+}
+
 /* 
  * For testing.
  */
@@ -247,7 +256,7 @@ function onKeyDown(event) {
     const seq = board.getNoteSequence();
     saveAs(new File([mm.sequenceProtoToMidi(seq)], 'bach.mid'));
   } else if (event.keyCode === 72) {   // h for help.
-    console.log(event.keyCode);
+    toggleHelp();
   }
 }
 
