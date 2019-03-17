@@ -241,15 +241,20 @@ function onKeyDown(event) {
   if (event.keyCode === 82) {  // r for reload.
     board.drawNoteSequence(previousSequence);
     infill();
-  } else if (event.keyCode === 76) {  // l for load
+  } else if (event.keyCode === 76) {  // l for load.
     fileInput.click();
+  } else if (event.keyCode === 83) {   // s for save.
+    const seq = board.getNoteSequence();
+    saveAs(new File([mm.sequenceProtoToMidi(seq)], 'bach.mid'));
+  } else if (event.keyCode === 72) {   // h for help.
+    console.log(event.keyCode);
   }
 }
 
 function loadMidi(event) {
   mm.blobToNoteSequence(event.target.files[0]).then((ns) => {
-    debugger
-    board.drawNoteSequence(ns);
+    const q = mm.sequences.quantizeNoteSequence(ns, 4);
+    board.drawNoteSequence(q);
   });
 }
 

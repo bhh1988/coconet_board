@@ -301,6 +301,25 @@ button.pixel:hover {
   background: #FFF182 !important;
 }
 
+/***********************
+ * Help dialog.
+ ***********************/
+.dialog {
+  background: white;
+  padding: 24px;
+  z-index: 10;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  width: 100%;
+  max-width: 500px;
+  border: solid var(--purple) 3px;
+  color: var(--purple);
+  border-radius: 3px;
+  box-shadow: 10px 10px 0 var(--purple);
+  transform: translateX(-50%);
+}
+
 #fileInput {
   width: 0;
   height: 0;
