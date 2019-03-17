@@ -2,6 +2,7 @@ const board = window.board;
 const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 let isMouseDown = false;
 let isAnimating = false;
+let previousSequence;
 let paletteVoice = 0;
 let brushSize = 1;
 let paletteScale = -1;
@@ -27,6 +28,7 @@ function init() {
   player.loadSamples({notes: allNotes});
 
   // Set up event listeners.
+  document.addEventListener('keydown', onKeyDown);
   const container = document.getElementById('container');
   
   container.addEventListener('touchstart', (event) => { isMouseDown = true; clickCell(event) }, {passive: true});
@@ -46,6 +48,8 @@ function init() {
   } else {
     board.loadHash(window.location.hash.substring(1));
   }
+  
+  fileInput.addEventListener('change', loadMidi);
 }
 
 function clickCell(event) {
@@ -124,7 +128,7 @@ function stop() {
 }
 
 function infill() {
-  const sequence = board.getNoteSequence();
+  const sequence = previousSequence = board.getNoteSequence();
   const mask = board.getMaskSequence();
   
   if (sequence.notes.length === 0) {
@@ -229,6 +233,26 @@ function save() {
   const seq = mm.sequences.mergeConsecutiveNotes(board.getNoteSequence());
   saveAs(new File([mm.sequenceProtoToMidi(seq)], 'bach.mid'));
 }
+
+/* 
+ * For testing.
+ */
+function onKeyDown(event) {
+  if (event.keyCode === 82) {  // r for reload.
+    board.drawNoteSequence(previousSequence);
+    infill();
+  } else if (event.keyCode === 76) {  // l for load
+    fileInput.click();
+  }
+}
+
+function loadMidi(event) {
+  mm.blobToNoteSequence(event.target.files[0]).then((ns) => {
+    debugger
+    board.drawNoteSequence(ns);
+  });
+}
+
 /* 
  * Error messages
  */

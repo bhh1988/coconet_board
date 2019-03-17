@@ -300,3 +300,11 @@ button.pixel:hover {
 .playing .bar {
   background: #FFF182 !important;
 }
+
+#fileInput {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  cursor: pointer;
+  display: none;
+}
