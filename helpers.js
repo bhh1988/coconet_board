@@ -218,7 +218,7 @@ class Board {
     for (let i = 0; i < PIXELS_HEIGHT; i++) {
       for (let j = 0; j < PIXELS_WIDTH; j++) {
         if (this.data[i][j].on > -1) {
-          s += `${MAX_PITCH - i}/${j}/${this.data[i][j].on},`;
+          s += `${MAX_PITCH - i}:${j}:${this.data[i][j].on},`;
         }
       }
     }
@@ -229,7 +229,7 @@ class Board {
     const steps = s.split(',');
     const notes = []
     for (let i = 0; i < steps.length; i++) {
-      const pair = steps[i].split('/');
+      const pair = steps[i].split(':');
       
       notes.push({pitch: parseInt(pair[0]), instrument: pair[2] || 0, 
                   quantizedStartStep: parseInt(pair[1]), quantizedEndStep: parseInt(pair[1]) + 1});    
