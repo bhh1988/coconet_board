@@ -133,29 +133,32 @@
     <div class="dialog" id="help">
       <h1>coucou🐦</h1>
       <br>
-      <p>Have some fun channeling your inner Bach, and harmonize with a machine learning model!
+      <p>Channel your inner Bach, and harmonize with a machine learning model! Because of how it's layed out,
+        this app works best on desktop or a wide screen (sorry!)
       </p>
+      <br><br>
       <p>
-        This app works best on desktop or a wide screen, since it's too wide for a mobile screen.
+        The model is trained to fill in missing portions of 4-part Bach chorales. Here are a few things you can try:
       </p>
-      
-      <h2>How to use:</h2>
+      <br>
       <p>
-        <ul>
-          <li>Draw a melody in any of the voices. not all voices can be drawn for all the pitches</li>
-          <li>infill that melody</li>
-          <li>mask out a section and only infill that</li>
-        </ul>
+        <ol>
+          <li><b>Draw</b> a melody in any of the voices (painted with different colours: <span class="pixel voice0"></span><span class="pixel voice1">
+            </span><span class="pixel voice2"></span><span class="pixel voice3"></span>). Each voice has a range and not all 
+            voices can be drawn for all the pitches (the legend on the right side should help with that!)</li>
+          <li>Have the model infill voices that are missing.</li>
+          <li>Use the <b>section</b> tool to mask out a section of the resulting piece and have the model only infill that part</li>
+        </ol>
       </p>
       
       <br>
       <button class="button controls" onclick="toggleHelp()" style="margin: 0 auto">
-        Ok!
+        I'm ready!
       </button>
       
       <br><br><br>
       
-      <p>
+      <p class="footer">
         Built with <a target="_blank" href="https://magenta.tensorflow.org">magenta.js</a>. Learn more about 
         <a target="_blank" href="https://magenta.tensorflow.org/coconet">how it works</a>,
         or see the code on <a target="_blank" href="https://glitch.com/edit/#!/coucou">Glitch</a>.
