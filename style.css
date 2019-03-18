@@ -233,7 +233,6 @@ input.controls {
   pointer-events: none;
 }
 
-
 .pixel {
   display: inline-block;
   visibility: visible;
@@ -334,4 +333,19 @@ button.pixel:hover {
   opacity: 0;
   cursor: pointer;
   display: none;
+}
+
+@media screen and (max-width: 700px) {
+  html {
+    --size: 10px;
+  }
+  
+  html, body {
+    height: 100vh;
+    overflow-y: hidden;
+  }
+  
+  .row span {
+    font-size: 10px;
+  }
 }
