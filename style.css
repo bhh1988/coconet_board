@@ -102,26 +102,6 @@ a:link, a:visited {
   margin-right: 4px;
 }
 
-.dialog {
-  font-family: monospace;
-  font-weight: 100;
-  background: white;
-  padding: 24px;
-  z-index: 10;
-  position: fixed;
-  top: 100px;
-  left: 50%;
-  width: 100%;
-  max-width: 500px;
-  transform: translateX(-50%);
-}
-
-.dialog > p > b {
-  background: var(--light);
-  padding: 3px;
-  border-radius: 3px;
-}
-
 /***********************
  * Action buttons
  ***********************/
@@ -138,7 +118,7 @@ a:link, a:visited {
   font-family: monospace;
   padding: 0;
   transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
-  background: transparent !important;
+  background: white !important;
   border: solid var(--purple) 2px;
   color: var(--purple);
   border-radius: 3px;
@@ -312,26 +292,36 @@ button.pixel:hover {
  * Help dialog.
  ***********************/
 .dialog {
-  background: white;
-  text-align: left;
+  background: var(--light);
+  text-align: center;
   padding: 24px;
-  z-index: 10;
-  position: fixed;
-  top: 100px;
-  left: 50%;
-  width: 100%;
-  max-width: 700px;
-  border: solid var(--purple) 3px;
   color: var(--purple);
-  border-radius: 3px;
-  box-shadow: 10px 10px 0 var(--purple);
-  transform: translateX(-50%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  border-top: 10px solid var(--purple);
+  overflow: auto;
+  transition: 1s transform;
+  transform: translate3d(0, 0, 0);
+  z-index: 2;
 }
 
-#main.blur {
-  filter: blur(2px);
-  opacity: 0.5;
-  pointer-events: none;
+.dialog p, .dialog ul {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.dialog ul {
+  text-align: left;
+}
+
+.dialog.hidden {
+  transform: translate3d(0, -200%, 0);
 }
 
 #fileInput {

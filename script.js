@@ -239,11 +239,10 @@ function save() {
 }
 
 function toggleHelp() {
-  help.hidden = !help.hidden;
-  if (help.hidden) {
-    document.getElementById('main').classList.remove('blur');
+  if (help.classList.contains('hidden')) {
+    help.classList.remove('hidden');
   } else {
-    document.getElementById('main').classList.add('blur');
+    help.classList.add('hidden');
   }
 }
 
