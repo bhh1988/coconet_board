@@ -140,6 +140,11 @@ function infill() {
     showEmptyNoteSequenceError();
     return;
   }
+  
+  // Stop the player if it's playing.
+  if (player.isPlaying()) {
+    playOrPause();
+  }
   error.textContent = 'The robots are working...';
   controls.setAttribute('disabled', true);
   
