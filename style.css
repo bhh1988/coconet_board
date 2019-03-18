@@ -16,12 +16,6 @@ html {
   --light: #F7E6DA;
   --purple: #09315d;
   --size: 13px;
-
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  overflow-y: hidden;
 }
 
 /* purples */
@@ -30,14 +24,21 @@ html {
 .voice2 { background: #0056a3 !important; fill: #0056a3; }
 .voice3 { background: #09315d !important; fill: #09315d; }
 
+html, body { height: 100%; }
+
 body {
   font-family: monospace;
-  margin: 1em;
+  padding: 1em;
+  margin: 0;
   text-align: center;
 
   font-size: 14px;
   color: var(--purple);
   position: relative;
+  
+  overflow-y: hidden;
+  
+  touch-action: manipulation; /* disable double-tap zoom */
 }
 
 h1 {
