@@ -17,6 +17,7 @@ function init() {
     run: (note) => board.playStep(note),
     stop: () => {
       stop();
+      play();
     }
   };
   
