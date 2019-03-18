@@ -55,8 +55,12 @@ h1 {
   text-shadow: -4px 4px 0 var(--light);
 }
 
+.settings  h1 {
+  font-size: 30px;
+}
+
 h2 {
-  margin-top: 44px;
+  margin-top: 24px;
 }
 
 a:link, a:visited {
@@ -312,7 +316,7 @@ button.pixel:hover {
   z-index: 2;
 }
 
-.dialog p, .dialog ol {
+.dialog p, .dialog ul {
   max-width: 700px;
   margin: 0 auto;
   font-size: 18px;
@@ -323,8 +327,13 @@ button.pixel:hover {
   text-align: center;
 }
 
-.dialog ol {
+.dialog ul {
   text-align: left;
+  list-style-type:none
+}
+
+.dialog ul li {
+  margin-bottom: 14px;
 }
 
 .dialog .footer {
@@ -361,10 +370,6 @@ hr {
   .dialog {
     padding: 14px;
     text-align: left;
-  }
-  h1 {
-    font-size: 30px;
-    text-align: center;
   }
   #container {
     min-width: 470px;
