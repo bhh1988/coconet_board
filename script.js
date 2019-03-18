@@ -1,11 +1,11 @@
 const board = window.board;
 const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 let isMouseDown = false;
-let isAnimating = false;
 let previousSequence;
 let paletteVoice = 0;
 let brushSize = 1;
 let paletteScale = -1;
+let playerHardStop = false;
 
 init();
 
@@ -16,8 +16,11 @@ function init() {
   player.callbackObject = {
     run: (note) => board.playStep(note),
     stop: () => {
-      stop();
-      play();
+      if (playerHardStop) {
+        stop();
+      } else {
+        merge();
+      }
     }
   };
   
@@ -98,10 +101,12 @@ function reset() {
 
 function playOrPause() {
   const container = document.getElementById('container');
-  if (isAnimating) {
+  if (player.isPlaying()) {
+    playerHardStop = true;
     player.stop();
     stop();
   } else {
+    playerHardStop = false;
     const sequence = board.getNoteSequence();
     if (sequence.notes.length === 0) {
       showEmptyNoteSequenceError();
@@ -110,20 +115,17 @@ function playOrPause() {
     play();
     merge();
   }
-  isAnimating = !isAnimating;
 }
 
 function play() {
   btnPlay.hidden = true;
   btnStop.hidden = false;
-  isAnimating = true;
   document.getElementById('container').classList.add('playing');
 }
 
 function stop() {
   btnPlay.hidden = false;
   btnStop.hidden = true;
-  isAnimating = false;
   board.playEnd();
   document.getElementById('container').classList.remove('playing');
 }
@@ -178,6 +180,7 @@ function infill() {
 }
 
 function merge() {
+  board.playEnd();
   const sequence = mm.sequences.mergeConsecutiveNotes(board.getNoteSequence());
   const container = document.getElementById('container');
   container.classList.add('playing');
