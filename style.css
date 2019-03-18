@@ -316,6 +316,10 @@ button.pixel:hover {
   line-height: 1.5;
 }
 
+.dialog .button {
+  text-align: center;
+}
+
 .dialog ul {
   text-align: left;
 }
