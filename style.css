@@ -24,8 +24,6 @@ html {
 .voice2 { background: #0056a3 !important; fill: #0056a3; }
 .voice3 { background: #09315d !important; fill: #09315d; }
 
-html, body { height: 100%; }
-
 body {
   font-family: monospace;
   padding: 1em;
@@ -37,6 +35,20 @@ body {
   position: relative;
   
   touch-action: manipulation; /* disable double-tap zoom */
+  height: 100vh;
+}
+
+html, body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch
+}
+body {
+  overflow-x: auto;
 }
 
 h1 {
@@ -344,10 +356,7 @@ button.pixel:hover {
     min-width: 470px;
   }
   .row span {
-    font-size: 10px;
-  }
-  .two h1 {
-    display: none;
+    font-size: 8px !important;
   }
   .two h2:first-of-type {
     margin-top: 0
