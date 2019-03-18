@@ -36,8 +36,6 @@ body {
   color: var(--purple);
   position: relative;
   
-  overflow-y: hidden;
-  
   touch-action: manipulation; /* disable double-tap zoom */
 }
 
@@ -339,13 +337,22 @@ button.pixel:hover {
   html {
     --size: 10px;
   }
-  
-  html, body {
-    height: 100vh;
-    overflow-y: hidden;
+  h1 {
+    font-size: 30px;
   }
-  
+  #container {
+    min-width: 470px;
+  }
   .row span {
     font-size: 10px;
+  }
+  .two h1 {
+    display: none;
+  }
+  .two h2:first-of-type {
+    margin-top: 0
+  }
+  .settings {
+    min-width: 140px;
   }
 }

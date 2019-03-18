@@ -1,5 +1,7 @@
 const board = window.board;
 const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
+
+// State of the world. Sorry.
 let isMouseDown = false;
 let previousSequence;
 let paletteVoice = 0;
