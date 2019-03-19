@@ -68,7 +68,7 @@ function clickCell(event) {
     button = event.target;
   }
   
-  if (button.localName !== 'button' || !isMouseDown) {
+  if (!button || button.localName !== 'button' || !isMouseDown) {
     return;
   }
   
@@ -248,8 +248,10 @@ function save() {
 function toggleHelp() {
   if (help.classList.contains('hidden')) {
     help.classList.remove('hidden');
+    main.setAttribute('hidden', true);
   } else {
     help.classList.add('hidden');
+    main.removeAttribute('hidden');
   }
 }
 
