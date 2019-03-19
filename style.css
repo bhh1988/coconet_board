@@ -361,6 +361,14 @@ button.pixel:hover {
   overflow: hidden;
   height: 96vh;
 }
+#main.blur {
+  pointer-events: none;
+  filter: blur(3px);
+  opacity: 0.5;
+}
+#main.blur .pixel {
+  pointer-events: none;
+}
 
 hr {
   height: 6px;

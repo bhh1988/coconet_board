@@ -54,7 +54,7 @@ function init() {
   const container = document.getElementById('container');
   container.addEventListener('touchstart', (event) => { isMouseDown = true; clickCell(event) }, {passive: true});
   container.addEventListener('touchend', (event) => { isMouseDown = false}, {passive: true});
-  container.addEventListener('touchmove', clickCell);
+  container.addEventListener('touchmove', clickCell, {passive: true});
   
   // Don't double fire events on desktop.
   const hasTouchEvents = ('ontouchstart' in window);
@@ -305,17 +305,20 @@ function loadMidi(event) {
  * Error messages.
  */
 function showEmptyNoteSequenceError() {
+  main.classList.add('blur');
   error.textContent = 'Draw some 🎵 first!';
   error.hidden = false;
   error.focus();
   setTimeout(clearError, 2000);
 }
 function showLoadingMessage() {
+  main.classList.add('blur');
   error.textContent = 'The robots are working...';
   error.focus();
   error.hidden = false;
 }
 function clearError() {
+  main.classList.remove('blur');
   error.textContent = '';
   error.hidden = true;
 }

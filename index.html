@@ -37,7 +37,9 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M497.941 273.941c18.745-18.745 18.745-49.137 0-67.882l-160-160c-18.745-18.745-49.136-18.746-67.883 0l-256 256c-18.745 18.745-18.745 49.137 0 67.882l96 96A48.004 48.004 0 0 0 144 480h356c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12H355.883l142.058-142.059zm-302.627-62.627l137.373 137.373L265.373 416H150.628l-80-80 124.686-124.686z" class=""></path></svg>
               <br>Erase
             </button>
-            <button class="button palette voice empty limit" onclick="activateVoice(event, -2)" aria-label="draw mask">⇤⇥<br>
+            <button class="button palette voice empty limit" onclick="activateVoice(event, -2)" aria-label="use fill selection tool to limit infilling to a specific section">
+              <span style="font-size: 16px">⇤⇥</span>
+              <br>
               Limit fill
             </button>
           </div>
@@ -45,10 +47,10 @@
         
         <section id="sectionBrush">
           <h2>Brush Size</h2>
-          <button class="pixel brush s1 active" onclick="activateBrush(event, 1)" id="defaultBrush"></button>
-          <button class="pixel brush s2" onclick="activateBrush(event, 2)"></button>
-          <button class="pixel brush s3" onclick="activateBrush(event, 3)"></button>
-          <button class="pixel brush s4" onclick="activateBrush(event, 4)"></button>
+          <button class="pixel brush s1 active" onclick="activateBrush(event, 1)" id="defaultBrush" aria-label="switch to brush that is 1 pixel wide"></button>
+          <button class="pixel brush s2" onclick="activateBrush(event, 2)" aria-label="switch to brush that is 2 pixels wide"></button>
+          <button class="pixel brush s3" onclick="activateBrush(event, 3)" aria-label="switch to brush that is 3 pixels wide"></button>
+          <button class="pixel brush s4" onclick="activateBrush(event, 4)" aria-label="switch to brush that is 4 pixels wide"></button>
         </section>
       </div>
       
@@ -177,9 +179,9 @@
       </p>
     </div>
   </body>
-  
-  <script src="helpers.js"></script>
-  <script src="script.js" defer></script>
+
+  <script src="board.js"></script>
+  <script src="script.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js" defer></script>
 </html>
