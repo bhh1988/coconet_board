@@ -4,10 +4,13 @@ const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadat
 // State of the world. Sorry.
 let isMouseDown = false;
 let previousSequence;  // So that you can re-infill.
+
 // What's selected.
 let paletteVoice = 0;
 let brushSize = 1;
 let paletteScale = -1;
+let shouldReInfill = false;
+
 // Actually stop the player from re-looping.
 let playerHardStop = false;
 
@@ -98,6 +101,7 @@ function clickCell(event) {
       }
     }
   }
+  shouldReInfill = false;
 }
 
 function reset() {
@@ -143,6 +147,7 @@ function stop() {
 }
 
 function infill() {
+  if (shouldRe
   const sequence = previousSequence = board.getNoteSequence();
   const mask = board.getMaskSequence();
   
