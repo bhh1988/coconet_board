@@ -14,7 +14,7 @@
         <h1>coucou 🐦</h1>  
         <section>
           <h2>Instruments</h2>
-          <div class="wrap-container top">
+          <div class="wrap-container top" id="sectionInstruments">
             <button class="button palette voice voice0 active" onclick="activateVoice(event, 0)" aria-label="draw soprano">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"/></svg>
               <br>Soprano  
@@ -43,7 +43,7 @@
           </div>
         </section>
         
-        <section>
+        <section id="sectionBrush">
           <h2>Brush Size</h2>
           <button class="pixel brush s1 active" onclick="activateBrush(event, 1)" id="defaultBrush"></button>
           <button class="pixel brush s2" onclick="activateBrush(event, 2)"></button>
@@ -55,7 +55,7 @@
       <div class="container" id="container"></div>
       
       <div class="settings two">
-        <section>
+        <section id="sectionControls">
           <div id="controls">
             <h2>Controls</h2>
             
@@ -142,7 +142,7 @@
       </div>
     </div>
     
-    <div id="error" class="controls">error message here</div>
+    <div id="error" class="controls" hidden></div>
     
     <input type="file" id="fileInput">
     

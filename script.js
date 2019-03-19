@@ -20,6 +20,10 @@ const model = new mm.Coconet('https://storage.googleapis.com/magentadata/js/chec
 model.initialize();
 
 function init() {
+  // If this is a small screen, reorganize the layout.
+  if (window.innerWidth < 700) {
+    sectionInstruments.
+  }
   // Set up the player.
   player.callbackObject = {
     run: (note) => board.playStep(note),
@@ -302,11 +306,16 @@ function loadMidi(event) {
  */
 function showEmptyNoteSequenceError() {
   error.textContent = 'Draw some 🎵 first!';
+  error.hidden = false;
+  error.focus();
   setTimeout(clearError, 2000);
 }
 function showLoadingMessage() {
   error.textContent = 'The robots are working...';
+  error.focus();
+  error.hidden = false;
 }
 function clearError() {
   error.textContent = '';
+  error.hidden = true;
 }

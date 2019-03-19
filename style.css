@@ -390,7 +390,19 @@ hr {
   justify-content: flex-start;
 }
 
-@media screen and (max-width: 800px) {
+#error {
+  padding: 24px;
+  width: 300px;
+  position: absolute;
+  top: 40%;
+  left: calc(50% - 150px);
+  border: 2px solid var(--purple);
+  background: white;
+  z-index: 100;
+  box-shadow: 6px 6px 0px var(--purple);
+}
+
+@media screen and (max-width: 700px) {
   html {
     /* padding outside the container, outside each pixel, etc */
     --size: calc((100vmin - 14px - 40*2px) / 40);
