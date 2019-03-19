@@ -392,7 +392,7 @@ hr {
 
 @media screen and (max-width: 800px) {
   html {
-    --size: 10px;
+    --size: calc(80vmin / 40);
   }
   .dialog {
     padding: 14px;
@@ -447,7 +447,6 @@ hr {
   }
   .wrap-container {
     width: 100%;
-    max-width: 500px;
     flex-wrap: wrap;
   }
   .wrap-container.top {
