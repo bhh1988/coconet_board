@@ -2,7 +2,7 @@ const board = new Board();
 let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 let model;
 
-// State of the world. Sorry.
+// State of the world. Sorry about this.
 let isMouseDown = false;
 let previousSequence;  // So that you can re-infill.
 
@@ -18,11 +18,7 @@ let playerHardStop = false;
 init();
 
 function init() {
-  // If this is a small screen, reorganize the layout.
-  if (window.innerWidth < 700) {
-    sectionControls.parentNode.insertBefore(sectionBrush, sectionControls);
-    sectionInstruments.parentNode.appendChild(sectionControls);
-  }
+  resize();
   
   // Set up the player.
   player.callbackObject = {
@@ -36,24 +32,38 @@ function init() {
     }
   };
   
+  // Let the user move in to the next page.
   btnReady.disabled = false;
 
   // Set up event listeners.
   document.addEventListener('keydown', onKeyDown);
   fileInput.addEventListener('change', loadMidi);
+  window.addEventListener('resize', resize);
   
+  // Set up touch events.
   const container = document.getElementById('container');
   container.addEventListener('touchstart', (event) => { isMouseDown = true; clickCell(event) }, {passive: true});
   container.addEventListener('touchend', (event) => { isMouseDown = false}, {passive: true});
   container.addEventListener('touchmove', clickCell, {passive: true});
+  container.addEventListener('mouseover', clickCell);
   
-  // Don't double fire events on desktop.
+  // But don't double fire events on desktop.
   const hasTouchEvents = ('ontouchstart' in window);
   if (!hasTouchEvents) {
     container.addEventListener('mousedown', (event) => { isMouseDown = true; clickCell(event) });
     container.addEventListener('mouseup', () => isMouseDown = false);
   }
-  container.addEventListener('mouseover', clickCell);
+}
+
+function resize() {
+  // If this is a small screen, reorganize the layout.
+  if (window.innerWidth < 700 && sectionControls.parentNode !== sectionInstruments.parentNode) {
+    sectionControls.parentNode.insertBefore(sectionBrush, sectionControls);
+    sectionInstruments.parentNode.appendChild(sectionControls);
+  } else if (window.innerWidth > 700 && sectionControls.parentNode === sectionInstruments.parentNode){
+    sectionBrush.parentNode.insertBefore(sectionControls, sectionBrush);
+    sectionInstruments.parentNode.appendChild(sectionBrush);
+  }
 }
 
 function userSaidGo() {
@@ -67,7 +77,6 @@ function userSaidGo() {
   }
   player.loadSamples({notes: allNotes});
   
-  
   // Load a saved melody, or the default one.
   const defaultHash = '77:8:0,77:9:0,77:10:0,77:11:0,77:12:0,77:13:0,76:0:0,76:1:0,76:2:0,76:3:0,76:4:0,76:5:0,76:6:0,76:7:0,76:14:0,76:15:0,76:24:0,76:25:0,76:26:0,76:27:0,76:28:0,76:29:0,76:30:0,76:31:0,74:16:0,74:17:0,74:18:0,74:19:0,74:22:0,74:23:0,73:20:0,73:21:0';
   if (window.location.hash === '') {
@@ -76,6 +85,7 @@ function userSaidGo() {
     board.loadHash(window.location.hash.substring(1));
   }
   
+  // Close the screen.
   toggleHelp();
 }
 
@@ -308,7 +318,7 @@ function loadMidi(event) {
 }
 
 /* 
- * Error messages.
+ * Error message ui.
  */
 function showEmptyNoteSequenceError() {
   main.classList.add('blur');

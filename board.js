@@ -291,13 +291,6 @@ class Board {
     }
   }
   
-  noScale() {
-    const rows = document.querySelectorAll(`#container .row`);
-    for (let i = 0; i < rows.length; i++) {
-      rows[i].classList.remove('hidden');
-    }
-  }
-  
   showScale(scale) {
     this.noScale();
     if (scale === -1) {
@@ -314,5 +307,12 @@ class Board {
         rows[i].classList.add('hidden');
       }
     } 
+  }
+  
+  noScale() {
+    const rows = document.querySelectorAll(`#container .row`);
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].classList.remove('hidden');
+    }
   }
 }
