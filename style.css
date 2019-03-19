@@ -84,6 +84,7 @@ a:hover {
   -ms-user-select: none;
   user-select: none;
   min-width: 570px;
+  white-space: nowrap;
 }
 
 .horizontal {
@@ -268,7 +269,7 @@ input.controls {
 }
 
 .container .row .pixel:nth-child(4n+6), .container .row .pixel:first-of-type {
-    background: #f9dccd;
+  background: #f9dccd;
 }
 
 .pixel.infilled {
@@ -393,13 +394,27 @@ hr {
     width:100%;
     margin: 0;
   }
-  .dialog h1 {
+  h1 {
     text-align: center;
   }
-  .settings h1 {
-    font-size: 26px;
+  h2 {
+    margin-bottom: 4px;
   }
   #main {
     flex-direction: column;
   }
+  .palette {
+    width: auto;
+    height: auto;
+  }
+  .palette-container {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #container {
+    width: 100%;
+    overflow: auto;
+  }
+      
 }
