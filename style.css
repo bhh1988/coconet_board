@@ -137,7 +137,7 @@ a:hover {
   font-weight: bold;
   font-size: 12px;
   margin: 4px 1px;
-  text-align: center;
+  text-align: center !important;
   
   border-style: outset;
   border-color: var(--light) var(--purple) var(--purple) var(--light);
@@ -268,7 +268,7 @@ input.controls {
   height: var(--size);
   width: var(--size);
   border: none;
-  border-radius: 3px;
+  border-radius: 1px;
   padding: 0;
   transition: transform 0.2s ease-in-out, background 0.1s ease-in-out;
   pointer-events: auto;
@@ -392,8 +392,10 @@ hr {
 
 @media screen and (max-width: 800px) {
   html {
-    --size: calc(80vmin / 40);
+    /* padding outside the container, outside each pixel, etc */
+    --size: calc((100vmin - 14px - 40*2px) / 40);
   }
+  .pixel { border-radius: 1px; }
   .dialog {
     padding: 14px;
     text-align: left;
@@ -453,11 +455,10 @@ hr {
     justify-content: space-around;
   }
   #container {
-    width: 95vw;
+    width: 100%;
     min-width: 0;
     overflow-x: auto;
     overflow-y: hidden;
-    margin-bottom: 20px;
-  }
-      
+    margin: 20px auto;
+  }   
 }
