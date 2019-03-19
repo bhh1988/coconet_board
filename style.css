@@ -163,10 +163,15 @@ a:hover {
   height: 66px;
 }
 
-.palette > svg {
+.palette svg {
   height: 30px;
   width: 30px;
   margin: 0 auto;
+}
+
+.palette.limit svg {
+  height: 20px;
+  width: 24px;
 }
 
 .palette.scale {
