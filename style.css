@@ -88,6 +88,10 @@ a:hover {
   flex-direction: row;
 }
 
+#main {
+  overflow: auto;
+}
+
 .settings {
   text-align: left;
   margin: 0 24px;
@@ -390,7 +394,7 @@ hr {
   width: 100%;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 500px) {
   html {
     --size: 10px;
   }
@@ -431,6 +435,9 @@ hr {
   }
   .wrap-container {
     width: 100%;
+  }
+  .wrap-container.top {
+    justify-content: space-around;
   }
   #container {
     width: 95vw;
