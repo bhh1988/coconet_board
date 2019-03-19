@@ -1,5 +1,6 @@
 const board = new Board();
-const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
+let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
+let model;
 
 // State of the world. Sorry.
 let isMouseDown = false;
@@ -15,9 +16,6 @@ let shouldReInfill = false;
 let playerHardStop = false;
 
 init();
-
-const model = new mm.Coconet('https://storage.googleapis.com/magentadata/js/checkpoints/coconet/bach');
-model.initialize();
 
 function init() {
   // If this is a small screen, reorganize the layout.
@@ -38,13 +36,6 @@ function init() {
     }
   };
   
-  // Load all SoundFonts so that they're ready for clicking.
-  const allNotes = [];
-  for (let i = 36; i < 82; i++) {
-    allNotes.push({pitch: i, velocity: 80});
-  }
-  player.loadSamples({notes: allNotes});
-
   btnReady.disabled = false;
 
   // Set up event listeners.
@@ -63,6 +54,19 @@ function init() {
     container.addEventListener('mouseup', () => isMouseDown = false);
   }
   container.addEventListener('mouseover', clickCell);
+}
+
+function userSaidGo() {
+  model = new mm.Coconet('https://storage.googleapis.com/magentadata/js/checkpoints/coconet/bach');
+  model.initialize();
+  
+  // Load all SoundFonts so that they're ready for clicking.
+  const allNotes = [];
+  for (let i = 36; i < 82; i++) {
+    allNotes.push({pitch: i, velocity: 80});
+  }
+  player.loadSamples({notes: allNotes});
+  
   
   // Load a saved melody, or the default one.
   const defaultHash = '77:8:0,77:9:0,77:10:0,77:11:0,77:12:0,77:13:0,76:0:0,76:1:0,76:2:0,76:3:0,76:4:0,76:5:0,76:6:0,76:7:0,76:14:0,76:15:0,76:24:0,76:25:0,76:26:0,76:27:0,76:28:0,76:29:0,76:30:0,76:31:0,74:16:0,74:17:0,74:18:0,74:19:0,74:22:0,74:23:0,73:20:0,73:21:0';
@@ -71,6 +75,8 @@ function init() {
   } else {
     board.loadHash(window.location.hash.substring(1));
   }
+  
+  toggleHelp();
 }
 
 function clickCell(event) {
