@@ -4,7 +4,8 @@
     <title>coucou 🐦</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+<!--     <meta name="viewport" content="width=device-width, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -85,7 +86,7 @@
                 Help
               </button>
               
-              <div>
+              <div style="width:100%">
                 <h2>Temperature</h2>
                 <input class="button controls" id="inputTemp" type="number" min="0" max="2" step="0.1" value="0.99" aria-label="temperature control"> 
               </div>
@@ -168,7 +169,7 @@
       </p>
       
       <br>
-      <button class="button controls" onclick="toggleHelp()" style="margin: 0 auto">
+      <button class="button controls" onclick="toggleHelp()" style="margin: 0 auto" disabled id="btnReady">
         I'm ready!
       </button>
       

@@ -16,10 +16,6 @@ html {
   --light: #F7E6DA;
   --purple: #09315d;
   --size: 13px;
-
-  position: fixed;
-  height: 100%;
-  overflow: hidden;
 }
 
 /* purples */
@@ -183,6 +179,7 @@ a:hover {
   padding: 8px 12px;
   margin-bottom: 8px;
   margin-right: 8px;
+  margin-left: 2px;
   text-align: left;
   font-size: 16px;
   font-weight: 600;
@@ -416,6 +413,9 @@ hr {
   h2 {
     margin-bottom: 4px;
   }
+  ul {
+    padding-left: 0;
+  }
   #main {
     flex-direction: column;
     overflow-x: hidden;
@@ -430,7 +430,8 @@ hr {
   #container {
     width: 95vw;
     min-width: 0;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     margin-bottom: 20px;
   }
   .button.special {

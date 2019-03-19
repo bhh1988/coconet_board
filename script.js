@@ -39,6 +39,8 @@ function init() {
   }
   player.loadSamples({notes: allNotes});
 
+  btnReady.disabled = false;
+
   // Set up event listeners.
   document.addEventListener('keydown', onKeyDown);
   fileInput.addEventListener('change', loadMidi);
@@ -107,6 +109,10 @@ function clickCell(event) {
 function reset() {
   board.reset();
   board.showScale(paletteScale);
+  // Stop the player if it's playing.
+  if (player.isPlaying()) {
+    playOrPause();
+  }
 }
 
 function playOrPause() {
