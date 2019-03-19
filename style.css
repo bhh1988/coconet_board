@@ -427,9 +427,15 @@ hr {
     max-width: 600px;
     margin: 0 auto;
   }
+  .controls {
+    margin: 4px;
+  }
   .button.controls, .button.palette {
     width: auto;
     flex: 1;
+  }
+  .button.controls {
+    min-width: 120px;
   }
   .button.special {
     width: 100%;
@@ -441,6 +447,8 @@ hr {
   }
   .wrap-container {
     width: 100%;
+    max-width: 500px;
+    flex-wrap: wrap;
   }
   .wrap-container.top {
     justify-content: space-around;
