@@ -346,6 +346,12 @@ button.pixel:hover {
   transform: translate3d(0, -200%, 0);
 }
 
+#main.hidden {
+  pointer-events: none;
+  overflow: hidden;
+  height: 96vh;
+}
+
 hr {
   height: 6px;
   width: 100px;
