@@ -88,10 +88,6 @@ a:hover {
   flex-direction: row;
 }
 
-#main {
-  overflow: auto;
-}
-
 .settings {
   text-align: left;
   margin: 0 24px;
@@ -101,7 +97,7 @@ a:hover {
 
 .settings.two {
   width: 250px;
-  max-width: 250px;
+  min-width: 250px;
 }
 
 .settings > label > button {
@@ -140,7 +136,7 @@ a:hover {
   top: 0;
   font-weight: bold;
   font-size: 12px;
-  margin: 2px -2px;
+  margin: 4px 1px;
   text-align: center;
   
   border-style: outset;
@@ -178,7 +174,7 @@ a:hover {
   width: 24px;
 }
 
-.palette.scale {
+.button.scale {
   height: 33px;
   width: 44px;
 }
@@ -186,9 +182,6 @@ a:hover {
 .controls {
   display: block;
   padding: 8px 12px;
-  margin-bottom: 8px;
-  margin-right: 8px;
-  margin-left: 2px;
   text-align: left;
   font-size: 16px;
   font-weight: 600;
@@ -393,8 +386,11 @@ hr {
   flex-wrap: wrap;
   width: 100%;
 }
+.wrap-container.top {
+  justify-content: flex-start;
+}
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   html {
     --size: 10px;
   }
@@ -428,6 +424,16 @@ hr {
   #main {
     flex-direction: column;
     overflow-x: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .button.controls, .button.palette {
+    width: auto;
+    flex: 1;
+  }
+  .button.special {
+    width: 100%;
+    flex: 1 100%;
   }
   .palette {
     width: auto;
@@ -445,9 +451,6 @@ hr {
     overflow-x: auto;
     overflow-y: hidden;
     margin-bottom: 20px;
-  }
-  .button.special {
-    width: 100%;
   }
       
 }
