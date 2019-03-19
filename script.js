@@ -147,7 +147,11 @@ function stop() {
 }
 
 function infill() {
-  if (shouldRe
+  if (shouldReInfill) {
+    board.drawNoteSequence(previousSequence);
+  }
+  shouldReInfill = true;
+  
   const sequence = previousSequence = board.getNoteSequence();
   const mask = board.getMaskSequence();
   
