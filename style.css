@@ -186,7 +186,7 @@ a:hover {
   transition: background 0.2s ease-in-out;
   border-color: var(--purple);
   fill: var(--purple);
-  width: 47%;
+  width: 46%;
   min-width: 0;
 }
 
