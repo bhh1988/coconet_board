@@ -144,7 +144,9 @@ a:hover {
   box-shadow: 2px 2px 0px var(--purple);
 }
 .button.special {
-  background: #fff182 !important
+  background: #fff182 !important;
+  width: calc(2 * 120px + 6px);
+  text-align: center;
 }
 
 .button:active, .button.active {
