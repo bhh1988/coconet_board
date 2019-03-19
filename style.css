@@ -390,4 +390,10 @@ hr {
   .settings {
     min-width: 140px;
   }
+  .dialog h1 {
+    text-align: center;
+  }
+  .settings h1 {
+    font-size: 26px;
+  }
 }
