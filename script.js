@@ -3,10 +3,12 @@ const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadat
 
 // State of the world. Sorry.
 let isMouseDown = false;
-let previousSequence;
+let previousSequence;  // So that you can re-infill.
+// What's selected.
 let paletteVoice = 0;
 let brushSize = 1;
 let paletteScale = -1;
+// Actually stop the player from re-looping.
 let playerHardStop = false;
 
 init();
@@ -15,13 +17,14 @@ const model = new mm.Coconet('https://storage.googleapis.com/magentadata/js/chec
 model.initialize();
 
 function init() {
+  // Set up the player.
   player.callbackObject = {
     run: (note) => board.playStep(note),
     stop: () => {
       if (playerHardStop) {
         stop();
       } else {
-        merge();
+        play();
       }
     }
   };
@@ -35,12 +38,14 @@ function init() {
 
   // Set up event listeners.
   document.addEventListener('keydown', onKeyDown);
-  const container = document.getElementById('container');
+  fileInput.addEventListener('change', loadMidi);
   
+  const container = document.getElementById('container');
   container.addEventListener('touchstart', (event) => { isMouseDown = true; clickCell(event) }, {passive: true});
   container.addEventListener('touchend', (event) => { isMouseDown = false}, {passive: true});
   container.addEventListener('touchmove', clickCell);
   
+  // Don't double fire events on desktop.
   const hasTouchEvents = ('ontouchstart' in window);
   if (!hasTouchEvents) {
     container.addEventListener('mousedown', (event) => { isMouseDown = true; clickCell(event) });
@@ -48,14 +53,13 @@ function init() {
   }
   container.addEventListener('mouseover', clickCell);
   
+  // Load a saved melody, or the default one.
   const defaultHash = '77:8:0,77:9:0,77:10:0,77:11:0,77:12:0,77:13:0,76:0:0,76:1:0,76:2:0,76:3:0,76:4:0,76:5:0,76:6:0,76:7:0,76:14:0,76:15:0,76:24:0,76:25:0,76:26:0,76:27:0,76:28:0,76:29:0,76:30:0,76:31:0,74:16:0,74:17:0,74:18:0,74:19:0,74:22:0,74:23:0,73:20:0,73:21:0';
   if (window.location.hash === '') {
     board.loadHash(defaultHash);
   } else {
     board.loadHash(window.location.hash.substring(1));
   }
-  
-  fileInput.addEventListener('change', loadMidi);
 }
 
 function clickCell(event) {
@@ -103,11 +107,13 @@ function reset() {
 
 function playOrPause() {
   const container = document.getElementById('container');
+  // If we're playing, stop playing.
   if (player.isPlaying()) {
     playerHardStop = true;
     player.stop();
     stop();
   } else {
+    // If we're stopped, start playing.
     playerHardStop = false;
     const sequence = board.getNoteSequence();
     if (sequence.notes.length === 0) {
@@ -115,14 +121,18 @@ function playOrPause() {
       return;
     }
     play();
-    merge();
   }
 }
 
 function play() {
   btnPlay.hidden = true;
   btnStop.hidden = false;
+  board.playEnd();
   document.getElementById('container').classList.add('playing');
+  
+  // Merge the current notes and start the player.
+  const sequence = mm.sequences.mergeConsecutiveNotes(board.getNoteSequence());
+  player.start(sequence);
 }
 
 function stop() {
@@ -145,7 +155,8 @@ function infill() {
   if (player.isPlaying()) {
     playOrPause();
   }
-  error.textContent = 'The robots are working...';
+  
+  showLoadingMessage();
   controls.setAttribute('disabled', true);
   
   // Put the original sequence in a map so we can diff it later.
@@ -166,7 +177,7 @@ function infill() {
     temperature: parseFloat(inputTemp.value),
     infillMask: mask
   }).then((output) => {
-    error.textContent = '';
+    clearError();
     controls.removeAttribute('disabled');
     board.drawNoteSequence(output);
     
@@ -184,14 +195,6 @@ function infill() {
       }
     }
   });
-}
-
-function merge() {
-  board.playEnd();
-  const sequence = mm.sequences.mergeConsecutiveNotes(board.getNoteSequence());
-  const container = document.getElementById('container');
-  container.classList.add('playing');
-  player.start(sequence);
 }
 
 function activateVoice(event, voice) {
@@ -248,10 +251,10 @@ function save() {
 function toggleHelp() {
   if (help.classList.contains('hidden')) {
     help.classList.remove('hidden');
-    main.setAttribute('hidden', true);
+    main.classList.add('hidden');
   } else {
     help.classList.add('hidden');
-    main.removeAttribute('hidden');
+    main.classList.remove('hidden');
   }
 }
 
@@ -280,13 +283,15 @@ function loadMidi(event) {
 }
 
 /* 
- * Error messages
+ * Error messages.
  */
 function showEmptyNoteSequenceError() {
   error.textContent = 'Draw some 🎵 first!';
   setTimeout(clearError, 2000);
 }
-
+function showLoadingMessage() {
+  error.textContent = 'The robots are working...';
+}
 function clearError() {
   error.textContent = '';
 }

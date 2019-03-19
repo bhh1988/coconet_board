@@ -1,7 +1,3 @@
-
-/***********************************
- * Board of dots
- ***********************************/
 const PIXELS_WIDTH = 32;
 const PIXELS_HEIGHT = 46;
 const MAX_PITCH = 81;
@@ -22,6 +18,9 @@ const SCALES = [
   {name:"Em",notes:[77,76,74,73,71,69,67,66,64,62,61,59,57,55,54,52,50,49,47,45,43,42,40,38,37,35,33,31]}
 ];
 
+/***********************************
+ * Board of dots
+ ***********************************/
 class Board {
   constructor() {
     this.data = [];
@@ -311,7 +310,6 @@ class Board {
       if (notes.indexOf(pitch) === -1) {
         rows[i].classList.add('hidden');
       }
-    }
-    
+    } 
   }
 }
