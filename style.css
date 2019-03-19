@@ -99,6 +99,11 @@ a:hover {
   min-width: 200px;
 }
 
+.settings.two {
+  width: 250px;
+  max-width: 250px;
+}
+
 .settings > label > button {
   margin-right: 8px;
 }
@@ -181,10 +186,11 @@ a:hover {
   text-align: left;
   font-size: 16px;
   font-weight: 600;
-  min-width: 120px;
   transition: background 0.2s ease-in-out;
   border-color: var(--purple);
   fill: var(--purple);
+  width: 47%;
+  min-width: 0;
 }
 
 .controls svg {
@@ -199,6 +205,7 @@ a:hover {
 
 input.controls {
   box-shadow: none;
+  width: 50%;
 }
 
 .brush {
@@ -377,8 +384,8 @@ hr {
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 200px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 @media screen and (max-width: 700px) {
@@ -395,12 +402,13 @@ hr {
   .row span {
     font-size: 8px !important;
   }
-  .two h2:first-of-type {
-    margin-top: 0
-  }
   .settings {
     width:100%;
     margin: 0;
+  }
+  .settings.two {
+    width: 100%;
+    max-width: 100%;
   }
   h1 {
     text-align: center;
@@ -417,9 +425,7 @@ hr {
     height: auto;
   }
   .wrap-container {
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
+    width: 100%;
   }
   #container {
     width: 95vw;
