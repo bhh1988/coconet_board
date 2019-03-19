@@ -390,12 +390,16 @@ hr {
     margin-top: 0
   }
   .settings {
-    min-width: 140px;
+    width:100%;
+    margin: 0;
   }
   .dialog h1 {
     text-align: center;
   }
   .settings h1 {
     font-size: 26px;
+  }
+  #main {
+    flex-direction: column;
   }
 }
