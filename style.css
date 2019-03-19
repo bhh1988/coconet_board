@@ -373,6 +373,14 @@ hr {
   display: none;
 }
 
+.wrap-container {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 200px;
+  flex-wrap: wrap;
+}
+
 @media screen and (max-width: 700px) {
   html {
     --size: 10px;
@@ -402,19 +410,25 @@ hr {
   }
   #main {
     flex-direction: column;
+    overflow-x: hidden;
   }
   .palette {
     width: auto;
     height: auto;
   }
-  .palette-container {
+  .wrap-container {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
   }
   #container {
-    width: 100%;
+    width: 95vw;
+    min-width: 0;
     overflow: auto;
+    margin-bottom: 20px;
+  }
+  .button.special {
+    width: 100%;
   }
       
 }
