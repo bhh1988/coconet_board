@@ -1,4 +1,4 @@
-const board = window.board;
+const board = new Board();
 const player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
 // State of the world. Sorry.
@@ -22,8 +22,10 @@ model.initialize();
 function init() {
   // If this is a small screen, reorganize the layout.
   if (window.innerWidth < 700) {
-    sectionInstruments.
+    sectionControls.parentNode.insertBefore(sectionBrush, sectionControls);
+    sectionInstruments.parentNode.appendChild(sectionControls);
   }
+  
   // Set up the player.
   player.callbackObject = {
     run: (note) => board.playStep(note),
@@ -176,7 +178,6 @@ function infill() {
   }
   
   showLoadingMessage();
-  controls.setAttribute('disabled', true);
   
   // Put the original sequence in a map so we can diff it later.
   const pitchToTime = {};
@@ -197,7 +198,6 @@ function infill() {
     infillMask: mask
   }).then((output) => {
     clearError();
-    controls.removeAttribute('disabled');
     board.drawNoteSequence(output);
     
     // Pop out.
