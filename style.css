@@ -363,7 +363,7 @@ button.pixel:hover {
 }
 #main.blur {
   pointer-events: none;
-  filter: blur(3px);
+  filter: blur(1px);
   opacity: 0.5;
 }
 #main.blur .pixel {
