@@ -268,7 +268,7 @@ function activateScale(event, scale) {
   const btn = event.target.localName === 'button' ? event.target : event.target.parentNode;
   
   // Deactivate the previous button.
-  const prevButton = document.querySelector('.palette.scale.active');
+  const prevButton = document.querySelector('.scale.active');
   if (prevButton) {
     prevButton.classList.remove('active');
   }
