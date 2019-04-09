@@ -312,13 +312,13 @@ button.pixel:hover {
 }
 .piano-key.white {
   background: white;
-  border: 1px solid var(--purple);
-  color: var(--purple);
+  border: 1px solid var(--light);
+  color: white;
 }
 .piano-key.black {
   background: var(--purple);
   border: 1px solid var(--purple);
-  color: white;
+  color: var(--purple);
 }
 .piano-key.off {
   border: none;

@@ -307,6 +307,14 @@ function onKeyDown(event) {
     saveAs(new File([mm.sequenceProtoToMidi(seq)], 'bach.mid'));
   } else if (event.keyCode === 72) {   // h for help.
     toggleHelp();
+  } else if (event.keyCode === 80) {   // p for piano and pablo bc he asked for it.
+    // Toggle the piano keys on or off.
+    const keys = container.querySelectorAll('.piano-key');
+    if (keys[0].classList.contains('off')) {
+      for (let i = 0; i < keys.length; i++) {keys[i].classList.remove('off'); }
+    } else {
+      for (let i = 0; i < keys.length; i++) {keys[i].classList.add('off'); }
+    }
   }
 }
 

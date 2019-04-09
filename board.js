@@ -20,7 +20,6 @@ const SCALES = [
   {name: 'Am', notes: [81,80,77,76,74,72,71,69,68,65,64,62,60,59,57,56,53,52,50,48,47,45,44,41,40,38,36]},
   {name: 'Bm', notes: [79,78,76,74,73,71,70,67,66,64,62,61,59,58,55,54,52,50,49,47,46,43,42,40,38,37,35]}
 ];
-const SHARPS = [1, 3, 6, 8, 10];
 
 /***********************************
  * Board of dots
@@ -60,11 +59,10 @@ class Board {
         // Add a pitch label.
         if (j === 0) {
           const span = document.createElement('span');
-          span.setAttribute('class', 'piano-key');
+          span.setAttribute('class', 'piano-key off');
           span.textContent = pitch;
           rowEl.appendChild(span);
-          debugger
-          span.classList.add(SHARPS.indexOf(pitch % 60) === -1 ? 'white': 'black');
+          span.classList.add(SCALES[0].notes.indexOf(pitch) === -1 ? 'black': 'white');
         }
         rowEl.appendChild(button);
       }
