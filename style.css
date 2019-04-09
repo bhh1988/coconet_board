@@ -305,6 +305,27 @@ button.pixel:hover {
   background: #FFF182 !important;
 }
 
+.piano-key {
+  font-size: 10px;
+  padding: 0;
+  overflow: hidden;
+}
+.piano-key.white {
+  background: white;
+  border: 1px solid var(--purple);
+  color: var(--purple);
+}
+.piano-key.black {
+  background: var(--purple);
+  border: 1px solid var(--purple);
+  color: white;
+}
+.piano-key.off {
+  border: none;
+  color: var(--purple);
+  background: transparent !important;
+  font-size: 12px;
+}
 /***********************
  * Help dialog.
  ***********************/
