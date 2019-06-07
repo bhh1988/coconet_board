@@ -212,6 +212,8 @@ class Board {
     for(let n = 0; n < ns.notes.length; n++) {
       const note = ns.notes[n];
       const r = MAX_PITCH - note.pitch;
+      if (r < 0)
+        continue;
       const c = note.quantizedStartStep
       const v = note.instrument
       this.data[r][c].on = v;
