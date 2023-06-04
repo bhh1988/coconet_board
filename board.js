@@ -1,3 +1,5 @@
+//const PIXELS_WIDTH = 70;
+//const PIXELS_HEIGHT = 46;
 const PIXELS_WIDTH = 32;
 const PIXELS_HEIGHT = 46;
 const MAX_PITCH = 81;
